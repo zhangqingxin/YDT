@@ -1,4 +1,8 @@
 # Ignore Play! working directory #
+.classpath
+.project
+/.settings/
+/eclipse/
 bin/
 /db
 .eclipse
