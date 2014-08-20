@@ -1,0 +1,247 @@
+        <style type="text/css">
+        #slider .rslides, #slider .rslides li { height: 350px; max-height: 350px; }
+        #slider .rslides img { height: 100%; max-height: 350px; }
+        
+        .login_box {
+            display: none;
+            background: #fff;
+            border: 2px solid #ba2327;
+            width: 446px;
+            position: fixed;
+            left: 50%;
+            top: 240px;
+            overflow: hidden;
+            z-index: 20;
+        }
+        
+        .filter {
+            z-index: 30;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2300px;
+            background-color: #dddddd;
+            _filter: alpha(opacity=60);
+            filter: alpha(opacity=60);
+            -moz-opacity: 0.6;
+            -khtml-opacity: 0.6;
+            opacity: 0.6;
+        }
+        
+        .login_close {
+            padding: 10px 10px 0 0;
+            text-align: right;
+        }
+        .login_close a {
+            display: inline-block;
+            background-position: 0 0;
+            width: 24px;
+            height: 22px;
+        }
+        .login_title {
+            text-align: center;
+            color: #c9243b;
+            font-size: 22px;
+            font-family: 'Microsoft YaHei';
+            margin: 8px 0 34px;
+        }
+        .login_p {
+            text-align: center;
+        }
+        .login_p label, .login_p input {
+            vertical-align: middle;
+            display: inline-block;
+        }
+        .login_p label {
+            color: #444;
+            font-weight: 700;
+            font-size: 13px;
+            width: 82px;
+        }
+        .login_p input {
+            width: 208px;
+            height: 26px;
+            line-height: 26px;
+            border: 1px solid #b8b8b8;
+            padding: 0 2px;
+        }
+        
+        .login_btn {
+            text-align: center;
+            font-size: 14px;
+            margin: 34px 34px 15px;
+        }
+        .login_btn label, .login_btn input {
+            vertical-align: middle;
+            display: inline-block;
+        }
+        .login_btn label {
+            color: #444;
+            font-weight: 700;
+            width: 52px;
+        }
+        .login_btn input {
+            width: 208px;
+            height: 36px;
+            line-height: 26px;
+            border: 1px solid #b8b8b8;
+            padding: 0 2px;
+        }
+        
+        .regist {
+            text-align: center;
+        }
+        .regist a {
+            font-size: 13px;
+            display: inline-block;
+            background-position: 0 0;
+            width: 100px;
+            height: 22px;
+            color: #0052FF;
+        }
+        </style>
+        
+        <script type="text/javascript">
+        $(function() {
+            $('#loginBtn').click(function() {
+                $('#loginBox').popup({
+                    filter : '#filter'
+                });
+            });
+            $('#loginClose').click(function() {
+                $('#loginBox').pophide({
+                    filter : '#filter'
+                });
+            });
+            $('#regist').click(function() {
+                $('#loginBox').pophide({
+                    filter : '#filter'
+                });
+                $('#registBox').popup({
+                    filter : '#filter'
+                });
+            });
+            $('#registClose').click(function(){
+                $('#registBox').pophide({
+                    filter : '#filter'
+                });
+            });
+            
+            $('#login').click(function() {
+            	var user = $('#login_username').val();
+            	var pass = $('#login_passwd').val();
+            	$.ajax({
+                    url:'/login',  
+                    type:'POST',
+                    data:'username='+user+'&'+'password='+pass,
+                    success:function(data){ 
+                    },  
+                    error:function(){  
+                    }  
+                });
+            });
+            
+        });
+        
+        </script>
+
+        <div id="loginBox" class="login_box">
+            <p class="login_close">
+                <a id="loginClose" onclick="closelogin">关闭</a>
+            </p>
+            <p class="login_title">
+                您还没有登录，请先登录！
+            </p>
+            <p class="login_p">
+                <label>用户名：</label>
+                <input id="login_username" type="text">
+            </p>
+            <p class="login_p">
+                <label>密&nbsp;&nbsp;码：</label>
+                <input id="login_passwd" type="password">
+            </p>
+            <p class="login_btn">
+            <input type="button" id="login"  value="点击登录" />
+            </p>
+            <p class="regist">
+                <a id="regist">您还没注册吗？</a>
+            </p>
+        </div>
+        <div class="filter" style="display:none" id="filter"></div>
+
+
+        <div id="registBox" class="login_box">
+            <p class="login_close">
+                <a id="registClose" onclick="closeregist">关闭</a>
+            </p>
+            <p class="login_title">
+                用户注册
+            </p>
+            <p class="login_p">
+                <label>用户名：</label>
+                <input id="username" type="text">
+            </p>
+            <p class="login_p">
+                <label>输入密码：</label>
+                <input id="passwd" type="password">
+            </p>
+            <p class="login_p">
+                <label>确认密码：</label>
+                <input id="passwd" type="password">
+            </p>
+            <p class="login_btn">
+            <input type="button" id="registBtn"  value="确定" style="margin-bottom:20px"/>
+            </p>
+        </div>
+
+
+
+            <div id="pre-header">
+                <div class="wrap-safari">
+                    <div id="pre-header-core" class="main-navigation"></div>
+                </div>
+            </div>
+            <!-- #pre-header -->
+
+            <div id="header">
+                <div id="header-core">
+
+                    <div id="logo">
+                        <a rel="home" href="http://localhost/"><h1 rel="home"
+                                class="site-title" title="用电通">用电通</h1></a>
+                    </div>
+
+                    <div id="header-links" class="main-navigation">
+                        <div id="header-links-inner" class="header-links">
+                            <ul class="menu">
+                                #{if user}
+                                %{
+					                String uname=user.username;
+					                if(uname.length()>6){
+					                uname=uname.substring(0,6)+"...";
+					                }
+   				                }%
+   				                <li class="current_page_item"><a id="loginoutBtn" href="@{Mod.logout()}">${uname}，退出</a></li>
+                                #{/if} 
+                                #{else}
+                                <li class="current_page_item"><a  id="loginBtn">登陆 / 注册</a></li>
+                                #{/else}
+                                <li class="page_item page-item-14">
+                                    <a href="http://localhost/">首页</a></li>
+                                <li class="page_item page-item-14"><a
+                                    href="http://localhost/?page_id=14">业务办理</a></li>
+                                <li class="page_item page-item-16"><a
+                                    href="http://localhost/?page_id=16">工程服务</a></li>
+                                <li class="page_item page-item-2"><a
+                                    href="http://localhost/?page_id=2">我的管家</a></li>
+                                <li class="page_item page-item-12"><a
+                                    href="http://localhost/?page_id=12">用电常识</a></li>
+                                <li class="page_item page-item-10"><a
+                                    href="http://localhost/?page_id=10">电费缴纳</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #header -->

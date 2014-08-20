@@ -11,5 +11,20 @@ GET     /favicon.ico                            404
 # Map static resources from the /app/public folder to the /public path
 GET     /public/                                staticDir:public
 
+# Index
+POST     /login                                  Application.login
+
+# Admin
+GET      /admin                                 Admin.admin
+GET      /admin/index                           Admin.admin
+GET      /admin/treenode                        Admin.getFuncTreeNode
+
+# Dianfei
+GET      /admin/dianfei/orderadmin              DianFeiAdmin.adminOrder
+GET      /admin/dianfei/getorders               DianFeiAdmin.getOrders
+
+
+
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}
+
