@@ -1,5 +1,7 @@
 package models;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -27,4 +29,11 @@ public class GongChengFuWu extends Model {
 	// 工程服务类别
 	public int type;
 
+	public Date date;
+	
+	public String orderstate="0";//0:未处理 1：已发货 2：已签收 3：完成交易
+	
+	public int isdelete;
+	
+	public String des = "";
 }

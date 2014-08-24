@@ -22,8 +22,12 @@ GET      /admin/treenode                        Admin.getFuncTreeNode
 # Dianfei
 GET      /admin/dianfei/orderadmin              DianFeiAdmin.adminOrder
 GET      /admin/dianfei/getorders               DianFeiAdmin.getOrders
+POST     /admin/dianfei/chageOrderStatus        DianFeiAdmin.chageOrderStatus
 
-
+# Yewubanli
+GET      /admin/yewubanli/orderadmin              YeWuBanLiAdmin.adminOrder
+GET      /admin/yewubanli/getorders               YeWuBanLiAdmin.getOrders
+POST     /admin/yewubanli/chageOrderStatus        YeWuBanLiAdmin.chageOrderStatus
 
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}
