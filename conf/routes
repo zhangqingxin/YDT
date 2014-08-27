@@ -23,6 +23,9 @@ GET      /admin/treenode                        Admin.getFuncTreeNode
 GET      /admin/dianfei/orderadmin              DianFeiAdmin.adminOrder
 GET      /admin/dianfei/getorders               DianFeiAdmin.getOrders
 POST     /admin/dianfei/chageOrderStatus        DianFeiAdmin.chageOrderStatus
+POST     /admin/dianfei/uploadImage             DianFeiAdmin.uploadImage
+GET      /admin/dianfei/getImageList            DianFeiAdmin.getImageList
+POST     /admin/dianfei/deleteImage             DianFeiAdmin.deleteImage
 
 # Yewubanli
 GET      /admin/yewubanli/orderadmin              YeWuBanLiAdmin.adminOrder

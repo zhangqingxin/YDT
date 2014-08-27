@@ -1,5 +1,6 @@
 package controllers;
 
+import java.io.File;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -7,8 +8,12 @@ import java.util.Date;
 import java.util.List;
 
 import models.DianFei;
+import models.Image;
+import play.Play;
+import play.libs.Files;
 import play.mvc.Controller;
 import play.mvc.With;
+import utils.Utils;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -90,6 +95,68 @@ public class DianFeiAdmin extends Controller {
     		DianFei order = DianFei.findById(id[i]);
     		order.isdelete = 1;
     		order.save();
+    	}
+    }
+
+    public static void uploadImage(String data, File fileupload) {
+    	DianFei df = DianFei.find("byOrderNum", data).first();
+    	if (df != null) {
+    		String url = "public/userimage/" + Utils.getImageFileId();
+    		Files.copy(fileupload, Play.getFile(url));
+    		String filename = fileupload.getName();
+    		Image image = new Image();
+    		image.filename = filename;
+    		image.url = url;
+    		image.size = fileupload.length();
+    		image.save();
+    		df.addImage(image);
+    		JsonObject obj = new JsonObject();
+    		obj.addProperty("result", "success");
+    		renderHtml("success");
+    	} else {
+    		System.out.println("ERROR: Can't find DianFei OrderNum at " + data);
+    	}
+    }
+    
+    public static void deleteImage(String orderid, String id) {
+    	DianFei df = DianFei.find("byOrderNum", orderid).first();
+    	Image todel = null;
+    	if (df != null && df.imagelist != null) {
+    		for (Image image: df.imagelist) {
+    			if (image.id == Long.valueOf(id)) {
+    				todel = image;
+    				df.imagelist.remove(image);
+    				break;
+    			}
+    		}
+    	}
+    	if (todel != null) {
+    		df.save();
+    		Files.delete(Play.getFile(todel.url));
+    		renderText("success");
+    	} else {
+    		renderText("failed");
+    	}
+    }
+    
+    public static void getImageList(String id) {
+    	DianFei df = DianFei.find("byOrderNum", id).first();
+    	if (df != null) {
+    		JsonObject list = new JsonObject();
+    		list.addProperty("total", df.imagelist.size());
+    		JsonArray array = new JsonArray();
+    		for (Image image: df.imagelist) {
+    			JsonObject obj = new JsonObject();
+    			obj.addProperty("id", image.id);
+    			obj.addProperty("filename", image.filename);
+    			obj.addProperty("size", image.size);
+    			obj.addProperty("url", image.url);
+    			array.add(obj);
+    		}
+    		list.add("rows", array);
+    		renderText(list);
+    	} else {
+    		System.out.println("ERROR: Can't find DianFei OrderNum at " + id);
     	}
     }
 }

@@ -2,14 +2,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<link rel="stylesheet" type="text/css" href="@{'/public/jquery-easyui/themes/easyui.css'}">
+<link rel="stylesheet" type="text/css" href="@{'/public/jquery-easyui/themes/default/easyui.css'}">
 <link rel="stylesheet" type="text/css" href="@{'/public/jquery-easyui/themes/icon.css'}">
 <script type="text/javascript" src="@{'/public/javascripts/jquery-2.0.0.min.js'}"></script>
 <script type="text/javascript" src="@{'/public/javascripts/jquery.easyui.min.js'}"></script>
 <script type="text/javascript" src="@{'/public/javascripts/easyui-lang-zh_CN.js'}"></script>
+<script type="text/javascript" src="@{'/public/javascripts/ajaxfileupload.js'}"></script>
 </head>
 <body>
-	<table id="orderdatas" class="easyui-datagrid" style="border: false; width: auto; height: auto" data-options="pagination:true,url:'/admin/dianfei/getorders',method:'get',toolbar:'#tb'">
+	<table id="orderdatas" class="easyui-datagrid" style="border: false; width: auto; height: auto" data-options="singleSelect:true,pagination:true,url:'/admin/dianfei/getorders',method:'get',toolbar:'#tb'">
 		<thead>
 			<tr>
 			    <th data-options="field:'ck',checkbox:true"></th>
@@ -82,45 +83,79 @@
                     $('#statusdialog').dialog('close');
                 }
             }]" closed="true" >
+
 		<table cellpadding="5">
 			<tr>
 				<td>订单状态：</td>
-				<td>
-				<select id="orderstatus" name="orderstatus">
+				<td><select id="orderstatus" name="orderstatus">
 						<option value="0">已下单</option>
 						<option value="1">正在处理</option>
 						<option value="2">处理完毕</option>
-				</select>
-				</td>
-			</tr>
-			<tr>
-				<td>上传文件：</td>
-				<td>
-				<input id="fb" type="text" style="width:300px">
-				</td>
+				</select></td>
 			</tr>
 		</table>
+		<form id="uploadform" action="/admin/dianfei/uploadImage" method="post" enctype="multipart/form-data">
+		  <table>
+		      <tr>
+                    <td>上传文件：</td>
+                    <td><input id="fileupload" name="fileupload" type="file"/><a href="#" class="easyui-linkbutton" id="uploadbtn" style="width: 50px">上传</a></td>
+                    <td>
+                    </td>
+              </tr>
+		  </table>
+		</form>
 		<table id="files" class="easyui-datagrid"
 			style="border: false; width: auto; height: auto">
 			<thead>
 				<tr>
-					<th data-options="field:'id',width:0,hidden:true">ID</th>
-					<th data-options="field:'type',width:50,align:'center'">文件名</th>
-					<th data-options="field:'name',width:180,align:'center'">大小</th>
+				    <th data-options="field:'id',width:0,align:'center',hidden:true">ID</th>
+					<th data-options="field:'filename',width:50,align:'center'">文件名</th>
+					<th data-options="field:'size',width:180,align:'center'">大小</th>
+					<th data-options="field:'url',width:180,align:'center'">地址</th>
 					<th data-options="field:'oper',width:60,align:'center'">操作</th>
 				</tr>
 			</thead>
 		</table>
 	</div>
 	<script type="text/javascript">
-	   $('#fb').click(function(){
-		  alert('ttttttttt'); 
-	   });
-    	
-/* 		$('#fb').filebox({
-			buttonText : 'Choose File',
-			buttonAlign : 'left'
-		}); */
+
+
+		$("#uploadbtn").click(function() {
+			if ($("#fileupload").val()=="") {
+				alert("请先选择上传文件！");
+				return;
+			}
+			var rows = $('#orderdatas').datagrid('getSelections');
+			var id = rows[0].ordernum;
+			$.ajaxFileUpload({
+				url : '/admin/dianfei/uploadImage',
+				secureuri : false,
+				fileElementId : 'fileupload',
+				dataType : 'json',
+				data : id,
+				success : function(data, status) {
+					if (data=='success') {
+						reloadFiles(id);
+						$("#fileupload").val("");
+						alert("上传成功！");
+					} else {
+						reloadFiles(id);
+						alert("上传失败，请重试！");
+					}
+/* 					if (typeof (data.error) != 'undefined') {
+						if (data.error != '') {
+							alert(data.error);
+						} else {
+							alert(data.msg);
+						}
+					} */
+				},
+				error : function(data, status, e) {
+					alert("上传失败，请重试！");
+				//	alert(e);
+				}
+			});
+		});
 
 		$("#delete").click(function() {
 			var rows = $('#orderdatas').datagrid('getSelections');
@@ -166,41 +201,62 @@
 				alert("请先选择需要编辑的订单！")
 				return;
 			}
-			$("#statusdialog").dialog('open');
-		});
+			var rows = $('#orderdatas').datagrid('getSelections');
+            var id = rows[0].ordernum;
+            reloadFiles(id);
+			
+        });
 
-		$('#mealcombo').combogrid({
-			panelWidth : 500,
-			idField : 'id',
-			textField : 'name',
-			url : '/admin/order/getComboMeals',
-			method : 'get',
-			columns : [ [ {
-				field : 'id',
-				title : 'ID',
-				width : 0,
-				hidden : true
-			}, {
-				field : 'type',
-				title : '类别',
-				width : 80
-			}, {
-				field : 'name',
-				title : '名称',
-				width : 80
-			}, {
-				field : 'price',
-				title : '价格',
-				width : 80,
-				align : 'right'
-			}, {
-				field : 'discount',
-				title : '折扣',
-				width : 80
-			} ] ],
-			fitColumns : true
-		});
-
+		function reloadFiles(ordernum) {
+			$.ajax({
+                url:'/admin/dianfei/getImageList',  
+                type:'GET',
+                data:'id='+ordernum,
+                success:function(data){
+                    $('#files').datagrid({
+                        data: []
+                    });
+                    var obj = JSON.parse(data);
+                    var images = obj.rows;
+                    for (i=0;i<images.length;i++) {
+                        var r = images[i];
+                        var index = $('#files').datagrid('getRows').length;
+                        var imagerow = $('#files').datagrid('appendRow',{
+                        	id:r.id,
+                            filename:r.filename,
+                            size:r.size,
+                            url:r.url,
+                            oper:"<a onclick='deleteimagerow("+ordernum+","+r.id+")'><font color='0000ff'>删除</font></a>"
+                        });
+                    }
+                    $("#statusdialog").dialog("open");
+                },
+                error:function() {  
+                    alert("编辑失败，请重试！");  
+                }  
+            });
+		}
+		
+		
+		function deleteimagerow(ordernum,id) {
+			$.ajax({
+                url:'/admin/dianfei/deleteImage',  
+                type:'POST',
+                data:'id='+id+"&orderid="+ordernum,
+                success:function(data){
+                	if (data=='success') {
+                		alert('删除成功!');
+                	    reloadFiles(ordernum);
+                	} else {
+                		alert('删除失败!');
+                	}
+                },
+                error:function() {  
+                    alert("图片删除失败，请重试！");  
+                }  
+            });
+		}
+		
 		$('statusdialog').dialog({
 			title : '订单状态编辑',
 			buttons : [ {
@@ -228,6 +284,10 @@
 				}
 			} ]
 		});
+		
+		
+		
+		
 	</script>
 </body>
 </html>
