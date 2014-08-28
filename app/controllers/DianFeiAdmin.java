@@ -27,6 +27,9 @@ public class DianFeiAdmin extends Controller {
     }
 
     public static void getOrders(Integer page, Integer rows, String startdate, String enddate) throws ParseException {
+    	if (page == 0) {
+    		page = page + 1;
+    	}
     	int start = (page-1) * rows;
     	List<DianFei> orderList;
     	long count = 0;
@@ -114,7 +117,7 @@ public class DianFeiAdmin extends Controller {
     		obj.addProperty("result", "success");
     		renderHtml("success");
     	} else {
-    		System.out.println("ERROR: Can't find DianFei OrderNum at " + data);
+    		System.out.println("ERROR: Can't find OrderNum at " + data);
     	}
     }
     
@@ -156,7 +159,7 @@ public class DianFeiAdmin extends Controller {
     		list.add("rows", array);
     		renderText(list);
     	} else {
-    		System.out.println("ERROR: Can't find DianFei OrderNum at " + id);
+    		System.out.println("ERROR: Can't find OrderNum at " + id);
     	}
     }
 }

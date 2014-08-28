@@ -49,7 +49,6 @@ public class DianFei extends Model {
 	
 	public String des = "";
 
-	@Required
 	@OneToMany(cascade=CascadeType.ALL,fetch = FetchType.LAZY, orphanRemoval=true)
 	public List<Image> imagelist;
 	

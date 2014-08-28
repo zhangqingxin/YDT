@@ -7,17 +7,19 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import models.GongChengFuWu;
 import models.Image;
-import models.YeWuBanLi;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
 import play.Play;
 import play.libs.Files;
 import play.mvc.Controller;
 import utils.Utils;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+public class GongChengFuWuAdmin extends Controller {
 
-public class YeWuBanLiAdmin extends Controller {
     public static void adminOrder() {
         render();
     }
@@ -27,27 +29,27 @@ public class YeWuBanLiAdmin extends Controller {
     		page = page + 1;
     	}
     	int start = (page-1) * rows;
-    	List<YeWuBanLi> orderList;
+    	List<GongChengFuWu> orderList;
     	long count = 0;
     	if (startdate !=null && enddate != null) {
     		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
     		Date sDate = sf.parse(startdate);
     		Date eDate = sf.parse(enddate);
-    		orderList = YeWuBanLi.find("date >= ? and date <= ? and isdelete = '0' order by date desc",sDate, eDate).from(start).fetch(rows);
+    		orderList = GongChengFuWu.find("date >= ? and date <= ? and isdelete = '0' order by date desc",sDate, eDate).from(start).fetch(rows);
     		count = orderList.size();
     	} else {
-    		orderList = YeWuBanLi.find("isdelete = '0' order by date desc").from(start).fetch(rows);
-    		count = YeWuBanLi.count();
+    		orderList = GongChengFuWu.find("isdelete = '0' order by date desc").from(start).fetch(rows);
+    		count = GongChengFuWu.count();
     	}
         
         renderText(generateJson(orderList, count));
     }
     
-    public static JsonObject generateJson(List<YeWuBanLi> list, long count) {
+    public static JsonObject generateJson(List<GongChengFuWu> list, long count) {
         JsonObject json = new JsonObject();
         json.addProperty("total", count);
         JsonArray array = new JsonArray();
-        for(YeWuBanLi order: list) {
+        for(GongChengFuWu order: list) {
             JsonObject obj = getOrderJsonObj(order);
             array.add(obj);
         }
@@ -55,7 +57,7 @@ public class YeWuBanLiAdmin extends Controller {
         return json;
     }
     
-    private static JsonObject getOrderJsonObj(YeWuBanLi order) {
+    private static JsonObject getOrderJsonObj(GongChengFuWu order) {
     	JsonObject obj = new JsonObject();
     	if (order == null) {
     		return obj;
@@ -80,10 +82,10 @@ public class YeWuBanLiAdmin extends Controller {
         
         return obj;
     }
-
+    
     public static void chageOrderStatus(List<String> id, String status) {
     	for (String ordernum: id) {
-    		YeWuBanLi order = YeWuBanLi.find("byOrderNum", ordernum).first();
+    		GongChengFuWu order = GongChengFuWu.find("byOrderNum", ordernum).first();
     		order.orderstate = status;
     		order.save();
     	}
@@ -91,14 +93,14 @@ public class YeWuBanLiAdmin extends Controller {
     
     public static void deleteOrder(Long[] id) {
     	for (int i=0;i<id.length;i++) {
-    		YeWuBanLi order = YeWuBanLi.findById(id[i]);
+    		GongChengFuWu order = GongChengFuWu.findById(id[i]);
     		order.isdelete = 1;
     		order.save();
     	}
     }
-    
+
     public static void uploadImage(String data, File fileupload) {
-    	YeWuBanLi df = YeWuBanLi.find("byOrderNum", data).first();
+    	GongChengFuWu df = GongChengFuWu.find("byOrderNum", data).first();
     	if (df != null) {
     		String url = "/public/userimage/" + Utils.getImageFileId();
     		Files.copy(fileupload, Play.getFile(url));
@@ -118,7 +120,7 @@ public class YeWuBanLiAdmin extends Controller {
     }
     
     public static void deleteImage(String orderid, String id) {
-    	YeWuBanLi df = YeWuBanLi.find("byOrderNum", orderid).first();
+    	GongChengFuWu df = GongChengFuWu.find("byOrderNum", orderid).first();
     	Image todel = null;
     	if (df != null && df.imagelist != null) {
     		for (Image image: df.imagelist) {
@@ -139,7 +141,7 @@ public class YeWuBanLiAdmin extends Controller {
     }
     
     public static void getImageList(String id) {
-    	YeWuBanLi df = YeWuBanLi.find("byOrderNum", id).first();
+    	GongChengFuWu df = GongChengFuWu.find("byOrderNum", id).first();
     	if (df != null) {
     		JsonObject list = new JsonObject();
     		list.addProperty("total", df.imagelist.size());

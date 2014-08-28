@@ -10,7 +10,7 @@
 <script type="text/javascript" src="@{'/public/javascripts/ajaxfileupload.js'}"></script>
 </head>
 <body>
-    <table id="orderdatas" class="easyui-datagrid" style="border: false; width: auto; height: auto" data-options="singleSelect:true,pagination:true,url:'/admin/yewubanli/getorders',method:'get',toolbar:'#tb'">
+    <table id="orderdatas" class="easyui-datagrid" style="border: false; width: auto; height: auto" data-options="singleSelect:true,pagination:true,url:'/admin/gongchengfuwu/getorders',method:'get',toolbar:'#tb'">
         <thead>
             <tr>
                 <th data-options="field:'ck',checkbox:true"></th>
@@ -63,7 +63,7 @@
                     var status = $('#orderstatus').val();
                     
                     $.ajax({  
-                        url:'/admin/yewubanli/chageOrderStatus',
+                        url:'/admin/gongchengfuwu/chageOrderStatus',
                         type:'POST',  
                         data:ids + '&status=' + status,
                         success:function(data){  
@@ -94,7 +94,7 @@
                 </select></td>
             </tr>
         </table>
-        <form id="uploadform" action="/admin/yewubanli/uploadImage" method="post" enctype="multipart/form-data">
+        <form id="uploadform" action="/admin/gongchengfuwu/uploadImage" method="post" enctype="multipart/form-data">
           <table>
               <tr>
                     <td>上传文件：</td>
@@ -131,7 +131,7 @@
             var rows = $('#orderdatas').datagrid('getSelections');
             var id = rows[0].ordernum;
             $.ajaxFileUpload({
-                url : '/admin/yewubanli/uploadImage',
+                url : '/admin/gongchengfuwu/uploadImage',
                 secureuri : false,
                 fileElementId : 'fileupload',
                 dataType : 'json',
@@ -212,7 +212,7 @@
 
         function reloadFiles(ordernum) {
             $.ajax({
-                url:'/admin/yewubanli/getImageList',  
+                url:'/admin/gongchengfuwu/getImageList',  
                 type:'GET',
                 data:'id='+ordernum,
                 success:function(data){
@@ -243,7 +243,7 @@
         
         function deleteimagerow(ordernum,id) {
             $.ajax({
-                url:'/admin/yewubanli/deleteImage',  
+                url:'/admin/gongchengfuwu/deleteImage',  
                 type:'POST',
                 data:'id='+id+"&orderid="+ordernum,
                 success:function(data){

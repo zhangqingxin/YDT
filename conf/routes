@@ -31,6 +31,17 @@ POST     /admin/dianfei/deleteImage             DianFeiAdmin.deleteImage
 GET      /admin/yewubanli/orderadmin              YeWuBanLiAdmin.adminOrder
 GET      /admin/yewubanli/getorders               YeWuBanLiAdmin.getOrders
 POST     /admin/yewubanli/chageOrderStatus        YeWuBanLiAdmin.chageOrderStatus
+POST     /admin/yewubanli/uploadImage             YeWuBanLiAdmin.uploadImage
+GET      /admin/yewubanli/getImageList            YeWuBanLiAdmin.getImageList
+POST     /admin/yewubanli/deleteImage             YeWuBanLiAdmin.deleteImage
+
+# Gongchengfuwu
+GET      /admin/gongchengfuwu/orderadmin              GongChengFuWuAdmin.adminOrder
+GET      /admin/gongchengfuwu/getorders               GongChengFuWuAdmin.getOrders
+POST     /admin/gongchengfuwu/chageOrderStatus        GongChengFuWuAdmin.chageOrderStatus
+POST     /admin/gongchengfuwu/uploadImage             GongChengFuWuAdmin.uploadImage
+GET      /admin/gongchengfuwu/getImageList            GongChengFuWuAdmin.getImageList
+POST     /admin/gongchengfuwu/deleteImage             GongChengFuWuAdmin.deleteImage
 
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}
