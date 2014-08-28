@@ -101,7 +101,7 @@ public class DianFeiAdmin extends Controller {
     public static void uploadImage(String data, File fileupload) {
     	DianFei df = DianFei.find("byOrderNum", data).first();
     	if (df != null) {
-    		String url = "public/userimage/" + Utils.getImageFileId();
+    		String url = "/public/userimage/" + Utils.getImageFileId();
     		Files.copy(fileupload, Play.getFile(url));
     		String filename = fileupload.getName();
     		Image image = new Image();
