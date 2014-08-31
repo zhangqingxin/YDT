@@ -67,6 +67,7 @@ ol, ul, li,
 fieldset, form, label, legend,
 tbody, tfoot, thead, tr {
 	border: 0;
+	 color: #444;
 	font-family: inherit;
 	font-size: 100%;
 	font-style: inherit;

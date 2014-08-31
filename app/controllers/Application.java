@@ -17,12 +17,19 @@ public class Application extends Controller {
         render();
     }
 
-    public static void regist() {
+    public static void reg(String username,String passwd) {
     	
+    	
+    	User user = new User(username, passwd,"");
+		user.save();
+		session.put("user", username);
+		renderArgs.put("user", user);
+		renderTemplate("Application/index.html",user);
+		//index();
     }
 
-    public static void login(String username, String password) {
-    	User user = User.connect(username, password);
+    public static void login(String login_username, String login_passwd) {
+    	User user = User.connect(login_username, login_passwd);
     	if (user != null) {
     		session.put("user", user.username);
     		System.out.println("User: " + user.username);
@@ -32,6 +39,71 @@ public class Application extends Controller {
     	}
     }
 
+    public static void logout(){
+    	 session.clear();
+         index();
+    	
+    }
+    
+    
+    public static void yewubanli(String type ){
+    	if(type!=null){
+    		if(type.equals("1"))
+    			renderTemplate("Application/yewubanli.html");
+    		else if(type.equals("3"))
+    			renderTemplate("Application/yewubanli_project.html");
+    		else if(type.equals("2"))
+    			renderTemplate("Application/yewubanli_fee.html");
+    	}
+    	
+    	index();
+    	
+    }
+    
+    public static void yewubanli_submit(String userNum,String customName,String addr,String tel,int yewutype){
+    	
+    	YeWuBanLi yewu = new YeWuBanLi();
+    	yewu.orderNum= userNum;
+    	yewu.address=addr;
+    	yewu.customName=customName;
+    	yewu.phone=tel;
+    	yewu.type=yewutype;
+    	yewu.save();
+    	 index();
+    	
+    }
+    
+    
+    
+    public static void  checkUserLogin(String login_username,String login_passwd){
+    	
+    	User user = User.find("byUsernameAndPassword", login_username, login_passwd).first();
+		if(user!=null){
+			response.print(true);
+		}else{
+			response.print(false);
+			
+		}
+		
+    	
+    }
+    
+    
+    
+    public static void checkUser(String name){
+
+		User user =User.find("byUsername", name).first();
+		
+		if(user!=null){
+			response.print(false);
+		}else{
+			response.print(true);
+			
+		}
+		
+	}
+    
+    
 	private static User connected() {
         if(renderArgs.get("user") != null) {
             return renderArgs.get("user", User.class);
@@ -45,7 +117,7 @@ public class Application extends Controller {
         
         String username = session.get("user");
         
-        System.out.println("Is user in session: " + username);
+      
         
         if(username != null) {
         	

@@ -17,15 +17,21 @@
 <link rel="stylesheet" id="style-css" href="@{'/public/stylesheets/style.css'}" type="text/css" media="all">
 <link rel="stylesheet" id="shortcodes-css" href="@{'/public/stylesheets/style-shortcodes.css'}" type="text/css" media="all">
 <link rel="stylesheet" id="responsive-css" href="@{'/public/stylesheets/style-responsive.css'}" type="text/css" media="all">
+
+<link rel="stylesheet" href="@{'/public/stylesheets/tip-yellow/tip-yellow.css'}" type="text/css" />
 <script type='text/javascript' src="@{'/public/javascripts/jquery-1.8.3.min.js'}"></script>
 <script type="text/javascript" src="@{'/public/javascripts/jquery-migrate.js'}"></script>
 <script type="text/javascript" src="@{'/public/javascripts/jquery.pop.js'}"></script>
+
+        
+
 </head>
 
 <body class="home blog layout-responsive slider-full header-style1">
 <div id="body-core" class="hfeed site">
         <header id="site-header">
-        #{header /}
+        #{header user:user /}
+       
         #{slider /}
 		</header>
 		<!-- header -->
@@ -62,7 +68,7 @@
 								逾期电费缴纳<br> 电费缴纳
 							</p>
 							<p>
-								<a href="http://localhost/?page_id=14"
+								<a href="/ywbl"
 									class="more-link themebutton">了解详情</a>
 							</p>
 						</div>

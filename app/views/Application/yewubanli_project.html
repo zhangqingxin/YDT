@@ -3,7 +3,7 @@
 <html lang="zh-CN" class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<title>业务办理 | 用电通</title>
+<title>工程服务 | 用电通</title>
 <!--[if lt IE 9]>
 <script src="http://localhost/wp-content/themes/minamaze/lib/scripts/html5.js" type="text/javascript"></script>
 <![endif]-->
@@ -18,8 +18,13 @@
 <link rel="stylesheet" id="style-css" href="@{'/public/stylesheets/style.css'}" type="text/css" media="all">
 <link rel="stylesheet" id="shortcodes-css" href="@{'/public/stylesheets/style-shortcodes.css'}" type="text/css" media="all">
 <link rel="stylesheet" id="responsive-css" href="@{'/public/stylesheets/style-responsive.css'}" type="text/css" media="all">
-<script type="text/javascript" src="@{'/public/javascripts/jquery.js'}"></script>
-<script type="text/javascript" src="@{'/public/javascripts/jquery-migrate.js'}"></script>
+
+
+<link rel="stylesheet" href="@{'/public/stylesheets/tip-yellow/tip-yellow.css'}" type="text/css" />
+
+
+
+
 <!-- 
 <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://localhost/xmlrpc.php?rsd">
 <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://localhost/wp-includes/wlwmanifest.xml"> 
@@ -64,13 +69,116 @@
         <!-- #header -->
             </header>
     <!-- header -->
+    
+    #{script src:"layer.min.js" /}
 
+#{script src:"jquery.poshytip.min.js" /}
+
+ <script type="text/javascript">
+ $(function(){
+	 
+	 
+	 $('#userNum').poshytip({
+			content: '请填写客户工单',
+			showOn: 'none',
+			alignTo: 'target',
+			alignX: 'inner-left',
+		 
+		//alignY: 'center',
+			offsetX: 0,
+			offsetY: 5
+		});
+	 
+	 $('#customName').poshytip({
+			content: '请填写客户姓名',
+			showOn: 'none',
+			alignTo: 'target',
+			alignX: 'inner-left',
+		 
+		//alignY: 'center',
+			offsetX: 0,
+			offsetY: 5
+		});
+	 	$('#addr').poshytip({
+			content: '请填写详细地址',
+			showOn: 'none',
+			alignTo: 'target',
+			alignX: 'inner-left',
+		 
+		//alignY: 'center',
+			offsetX: 0,
+			offsetY: 5
+		});
+		$('#tel').poshytip({
+			content: '电话号码不能为空',
+			showOn: 'none',
+			alignTo: 'target',
+			alignX: 'inner-left',
+		 
+		//alignY: 'center',
+			offsetX: 0,
+			offsetY: 5
+		});
+	 
+	 
+	 
+ });
+ 
+ 
+ function mycheckout(){
+	
+	 var userNum=  $('#userNum').val();
+	 
+	 var customName=  $('#customName').val();
+	 
+	 var addr= $('#addr').val();
+	 
+	 var tel= $('#tel').val();
+	 
+	 
+		if(userNum==""){
+			alert("fff"+userNum);
+			$('#userNum').poshytip('show'); 
+			return;
+			
+		}
+		
+		if(customName==""){
+			
+			$('#customName').poshytip('show'); 
+			return;
+			
+		}
+		
+		if(addr==""){
+			
+			$('#addr').poshytip('show'); 
+			return;
+			
+		}
+		
+		if(tel==""){
+	
+			$('#tel').poshytip('show'); 
+			return;
+	
+		}
+	 
+		$("commentform").submit(function(e){
+			  alert("Submitted");
+			});
+ }
+ 
+ 
+ </script>          
+            
+            
             
     <div id="content">
     <div id="content-core">
 
         <div id="main">
-        <div id="intro" class="option1"><div id="intro-core"><h1 class="page-title"><span>业务办理</span></h1><div id="breadcrumbs"><div id="breadcrumbs-core"><a href="http://localhost/">Home</a><span class="delimiter"> / </span>业务办理</div></div></div></div>
+        <div id="intro" class="option1"><div id="intro-core"><h1 class="page-title"><span>工程服务</span></h1><div id="breadcrumbs"><div id="breadcrumbs-core"><a href="http://localhost/">Home</a><span class="delimiter"> / </span>工程服务</div></div></div></div>
         <div id="main-core">
 
             
@@ -83,9 +191,9 @@
 
     
     
-                                    
+                                 
                                     <form action="@{Application.yewubanli_submit()}" method="post" id="commentform" class="comment-form">
-                                      <p class="comment-notes">必填项已用<span class="required">*</span>标注</p>            
+                                      <p class="comment-notes"> 必填项已用<span class="required">*</span>标注</p>            
                                       <p class="comment-form-author "><label for="author">用电客户编号 <span class="required">*</span></label> 
                                 <input id="userNum" name="userNum" type="text" value="" size="30" aria-required="true" width="60%" maxlength="100"></p>
                                 
@@ -104,7 +212,7 @@
 
 								</select>
 								</p>
-                                                                       <input name="submit" type="submit" id="submit" value="提交">
+                                                                       <input name="submit" type="button" id="submit" onclick="mycheckout();" value="提交">
                             <input type="hidden" name="comment_post_ID" value="14" id="comment_post_ID">
 <input type="hidden" name="comment_parent" id="comment_parent" value="0">
                         </p>
@@ -130,12 +238,5 @@
 var _wpcf7 = {"loaderUrl":"http:\/\/localhost\/wp-content\/plugins\/contact-form-7\/images\/ajax-loader.gif","sending":"\u53d1\u9001\u4e2d\u3002\u3002\u3002"};
 /* ]]> */
 </script>
-<script type="text/javascript" src="@{'/public/javascripts/scripts.js'}"></script>
 
-<script type="text/javascript" src="@{'/public/javascripts/main-frontend.js'}"></script>
-<script type="text/javascript" src="@{'/public/javascripts/bootstrap.js'}"></script>
-<script type="text/javascript" src="@{'/public/javascripts/modernizr.js'}"></script>
-
-<script type="text/javascript" src="@{'/public/javascripts/responsiveslides.js'}"></script>
-<script type="text/javascript" src="@{'/public/javascripts/responsiveslides-call.js'}"></script>
 </body></html>

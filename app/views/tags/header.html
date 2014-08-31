@@ -1,4 +1,7 @@
-        <style type="text/css">
+ #{script src:"jquery-1.8.3.min.js" /}
+ #{script src:"jquery.validate.min.js"/}
+ %{ user = (_caller.user) }%
+          <style type="text/css">
         #slider .rslides, #slider .rslides li { height: 350px; max-height: 350px; }
         #slider .rslides img { height: 100%; max-height: 350px; }
         
@@ -47,7 +50,9 @@
             margin: 8px 0 34px;
         }
         .login_p {
-            text-align: center;
+        	padding: 2%;
+        	margin:10px auto;
+           
         }
         .login_p label, .login_p input {
             vertical-align: middle;
@@ -88,6 +93,23 @@
             border: 1px solid #b8b8b8;
             padding: 0 2px;
         }
+         #username-error  {
+             color: red;
+    		font-size: 10px;
+    		font-weight: 100;
+    		width: 82px;
+        }
+         #passwd-error  {
+             color: red;
+    		font-size: 10px;
+    		font-weight: 100;
+    		width: 82px;
+        }
+        #errormsg  {
+             color: red;
+    		 text-align: center;
+        }
+        
         
         .regist {
             text-align: center;
@@ -101,6 +123,8 @@
             color: #0052FF;
         }
         </style>
+      
+        
         
         <script type="text/javascript">
         $(function() {
@@ -131,21 +155,156 @@
             $('#login').click(function() {
             	var user = $('#login_username').val();
             	var pass = $('#login_passwd').val();
-            	$.ajax({
-                    url:'/login',  
-                    type:'POST',
-                    data:'username='+user+'&'+'password='+pass,
-                    success:function(data){ 
-                    },  
-                    error:function(){  
-                    }  
-                });
+            
             });
+            
+            
+            $("form[name='loginform']").submit(function() {
+            	var user = $('#login_username').val();
+            	var pass = $('#login_passwd').val();
+            	
+            	
+                  //return false;
+            });
+            $("form[name='regform']").submit(function() {
+            	var user = $('#login_username').val();
+            	var pass = $('#login_passwd').val();
+            	
+            	
+                  //return false;
+            });
+            
+            
+            
+            
+            $("#loginform").validate({
+   			 
+  			  onsubmit:true,
+  			   invalidHandler: function(form, validator) {  //不通过回调 
+  				   
+  			       return false; 
+  			          } ,
+  			          
+  			
+  			          
+  			   submitHandler:function(){
+  				  
+  				   $.ajax({
+  		                cache: true,
+  		                type: "POST",
+  		                url:"@{Application.login()}",
+  		                data:$('#loginform').serialize(),// 你的formid
+  		                async: false,
+  		                error: function(request) {
+  		                    //alert("Connection error");
+  		                    
+  		                  
+  		                },
+  		                success: function(data) {
+  		                	
+  		                	if(data=="failed"){
+  		                		$("#errormsg").css('display','block');
+  		                		
+  		                	}else{
+  		                		parent.location.href="/index";
+  		                	}
+  		                	
+  		                	
+  		                }
+  		            });
+  				   
+  				  
+  				
+  			   }       
+  			 
+  		 });
+            
+            
+        //////////////////////
+        
+            $("#regform").validate({
+       		 
+      		  onsubmit:true,
+      		   invalidHandler: function(form, validator) {  //不通过回调 
+      			   
+      		       return false; 
+      		          } ,
+      		          
+      		   rules:{	username: {
+      				    required: true,
+      				    minlength: 3,
+      				    remote:{                                          //验证用户名是否存在
+      			               type:"GET",
+      			               url:"/checkUser",             //servlet
+      			               data:{
+      			                 name:function(){return $("#username").val();}
+      			               } 
+      			              } 
+      				   },
+      			   passwd: {
+      				    required: true,
+      				    minlength: 6
+      				   },
+      			  repassswd: {
+      				    required: true,
+      				    minlength: 6,
+      				    equalTo: "#passwd"
+      				   }
+      		          
+      		   },        
+      		          
+      		   submitHandler:function(){
+      			   
+      			   $.ajax({
+      	                cache: true,
+      	                type: "POST",
+      	                url:"/reg",
+      	                data:$('#regform').serialize(),// 你的formid
+      	                async: false,
+      	                error: function(request) {
+      	                    alert("Connection error");
+      	                },
+      	                success: function(data) {
+      	                	
+      	                	parent.location.href="/index";
+      	                }
+      	            });
+      			   
+      			  
+      		   }       
+      		 
+      	 });
+      	 
+      	 jQuery.extend(jQuery.validator.messages, {
+      	        required: "必选字段",
+      	  remote: "用户名已经被注册",
+      	  email: "请输入正确格式的电子邮件",
+      	  url: "请输入合法的网址",
+      	  date: "请输入合法的日期",
+      	  dateISO: "请输入合法的日期 (ISO).",
+      	  number: "请输入合法的数字",
+      	  digits: "只能输入整数",
+      	  creditcard: "请输入合法的信用卡号",
+      	  equalTo: "请再次输入相同的值",
+      	  accept: "请输入拥有合法后缀名的字符串",
+      	  maxlength: jQuery.validator.format("请输入长度最多是{0}的字符串"),
+      	  minlength: jQuery.validator.format("请输入长度最少是{0}的字符串"),
+      	  rangelength: jQuery.validator.format("请输入 一个长度介于 {0} 和 {1} 之间的字符串"),
+      	  range: jQuery.validator.format("请输入一个介于 {0} 和 {1} 之间的值"),
+      	  max: jQuery.validator.format("请输入一个最大为{0} 的值"),
+      	  min: jQuery.validator.format("请输入一个最小为{0} 的值")
+      	});
+              
+              
+                  
+        
+            
             
         });
         
         </script>
-
+        <form name = "loginform" id="loginform" action = "@{Application.login()}" method="post">
+		
         <div id="loginBox" class="login_box">
             <p class="login_close">
                 <a id="loginClose" onclick="closelogin">关闭</a>
@@ -155,22 +314,25 @@
             </p>
             <p class="login_p">
                 <label>用户名：</label>
-                <input id="login_username" type="text">
+                <input id="login_username" name="login_username" type="text">
             </p>
             <p class="login_p">
                 <label>密&nbsp;&nbsp;码：</label>
-                <input id="login_passwd" type="password">
+                <input id="login_passwd" name="login_passwd" type="password">
             </p>
+            <p id="errormsg"  style="display:none;"  > <font color ='red'>用户名或者密码错误请重试！<font> </p>
             <p class="login_btn">
-            <input type="button" id="login"  value="点击登录" />
+            
+            <input type="submit" value="点击登录" />
             </p>
             <p class="regist">
                 <a id="regist">您还没注册吗？</a>
             </p>
         </div>
         <div class="filter" style="display:none" id="filter"></div>
-
-
+		</form>
+		
+		<form name = "regform" id="regform" action = "@{Application.reg()}" method="post">
         <div id="registBox" class="login_box">
             <p class="login_close">
                 <a id="registClose" onclick="closeregist">关闭</a>
@@ -180,22 +342,24 @@
             </p>
             <p class="login_p">
                 <label>用户名：</label>
-                <input id="username" type="text">
+                <input id="username" name="username" type="text">
             </p>
             <p class="login_p">
                 <label>输入密码：</label>
-                <input id="passwd" type="password">
+                <input id="passwd" name="passwd" type="password">
             </p>
             <p class="login_p">
                 <label>确认密码：</label>
-                <input id="passwd" type="password">
+                <input id="passwd" name="repassswd" type="password">
             </p>
             <p class="login_btn">
-            <input type="button" id="registBtn"  value="确定" style="margin-bottom:20px"/>
+           
+             <input type="submit" value="确定" style="margin-bottom:20px" />
             </p>
         </div>
-
-
+        </form>
+		
+	
 
             <div id="pre-header">
                 <div class="wrap-safari">
@@ -222,23 +386,23 @@
 					                uname=uname.substring(0,6)+"...";
 					                }
    				                }%
-   				                <li class="current_page_item"><a id="loginoutBtn" href="@{Mod.logout()}">${uname}，退出</a></li>
+   				                <li class="current_page_item"><a id="loginoutBtn" href="@{Application.logout()}">${uname}，退出</a></li>
                                 #{/if} 
                                 #{else}
                                 <li class="current_page_item"><a  id="loginBtn">登陆 / 注册</a></li>
                                 #{/else}
                                 <li class="page_item page-item-14">
-                                    <a href="http://localhost/">首页</a></li>
+                                    <a href="/index">首页</a></li>
                                 <li class="page_item page-item-14"><a
-                                    href="http://localhost/?page_id=14">业务办理</a></li>
+                                    href="/ywbl?type=1">业务办理</a></li>
                                 <li class="page_item page-item-16"><a
-                                    href="http://localhost/?page_id=16">工程服务</a></li>
+                                    href="/ywbl?type=3">工程服务</a></li>
                                 <li class="page_item page-item-2"><a
                                     href="http://localhost/?page_id=2">我的管家</a></li>
                                 <li class="page_item page-item-12"><a
                                     href="http://localhost/?page_id=12">用电常识</a></li>
                                 <li class="page_item page-item-10"><a
-                                    href="http://localhost/?page_id=10">电费缴纳</a></li>
+                                    href="/ywbl?type=2">电费缴纳</a></li>
                             </ul>
                         </div>
                     </div>

@@ -43,6 +43,12 @@ public class User extends Model {
     @Required
   	public String realname;
     
+    public User(String username,String password,String tel) {
+        this.password = password;
+        this.username = username;
+        this.tel=tel;
+    }
+    
     public static User connect(String username, String password) {
         return find("byUsernameAndPassword", username, password).first();
     }
