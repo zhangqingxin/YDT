@@ -18,8 +18,13 @@
 <link rel="stylesheet" id="style-css" href="@{'/public/stylesheets/style.css'}" type="text/css" media="all">
 <link rel="stylesheet" id="shortcodes-css" href="@{'/public/stylesheets/style-shortcodes.css'}" type="text/css" media="all">
 <link rel="stylesheet" id="responsive-css" href="@{'/public/stylesheets/style-responsive.css'}" type="text/css" media="all">
-<script type="text/javascript" src="@{'/public/javascripts/jquery.js'}"></script>
-<script type="text/javascript" src="@{'/public/javascripts/jquery-migrate.js'}"></script>
+
+
+<link rel="stylesheet" href="@{'/public/stylesheets/tip-yellow/tip-yellow.css'}" type="text/css" />
+
+
+
+
 <!-- 
 <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://localhost/xmlrpc.php?rsd">
 <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://localhost/wp-includes/wlwmanifest.xml"> 
@@ -64,7 +69,66 @@
         <!-- #header -->
             </header>
     <!-- header -->
+    
+    #{script src:"layer.min.js" /}
 
+#{script src:"jquery.poshytip.min.js" /}
+
+ <script type="text/javascript">
+ $(function(){
+	 
+	 
+	 $('#userNum').poshytip({
+			content: '请填写客户工单',
+			showOn: 'focus',
+			alignTo: 'target',
+			alignX: 'center',
+			alignY: 'bottom',
+			offsetX: 0,
+			offsetY: 5,
+			showTimeout: 100
+		});
+	 
+	 $('#customName').poshytip({
+			content: '请填写客户姓名',
+			showOn: 'none',
+			alignTo: 'target',
+			alignX: 'inner-left',
+		 
+		//alignY: 'center',
+			offsetX: 0,
+			offsetY: 5
+		});
+	 	$('#addr').poshytip({
+			content: '请填写详细地址',
+			showOn: 'none',
+			alignTo: 'target',
+			alignX: 'inner-left',
+		 
+		//alignY: 'center',
+			offsetX: 0,
+			offsetY: 5
+		});
+		$('#tel').poshytip({
+			content: '电话号码不能为空',
+			showOn: 'none',
+			alignTo: 'target',
+			alignX: 'inner-left',
+		 
+		//alignY: 'center',
+			offsetX: 0,
+			offsetY: 5
+		});
+	 
+	 
+	 
+ });
+ 
+ 
+
+ </script>          
+            
+            
             
     <div id="content">
     <div id="content-core">
@@ -83,9 +147,9 @@
 
     
     
-                                    
-                                    <form action="@{Application.yewubanli_submit()}" method="post" id="commentform" class="comment-form">
-                                      <p class="comment-notes">必填项已用<span class="required">*</span>标注</p>            
+                                 
+                                    <form action="@{Application.yewubanli_submit()}" method="post" id="commentform" name="commentform" class="comment-form">
+                                      <p class="comment-notes"> 必填项已用<span class="required">*</span>标注</p>            
                                       <p class="comment-form-author "><label for="author">用电客户编号 <span class="required">*</span></label> 
                                 <input id="userNum" name="userNum" type="text" value="" size="30" aria-required="true" width="60%" maxlength="100"></p>
                                 
@@ -104,7 +168,7 @@
 
 								</select>
 								</p>
-                                                                       <input name="submit" type="submit" id="submit" value="提交">
+                                                                       <input name="submit" type="submit" id="submit" onclick="mycheckout();" value="提交">
                             <input type="hidden" name="comment_post_ID" value="14" id="comment_post_ID">
 <input type="hidden" name="comment_parent" id="comment_parent" value="0">
                         </p>
@@ -129,13 +193,53 @@
 /* <![CDATA[ */
 var _wpcf7 = {"loaderUrl":"http:\/\/localhost\/wp-content\/plugins\/contact-form-7\/images\/ajax-loader.gif","sending":"\u53d1\u9001\u4e2d\u3002\u3002\u3002"};
 /* ]]> */
+
+ function mycheckout(){
+	
+	 var userNum=  $('#userNum').val();
+	 
+	 var customName=  $('#customName').val();
+	 
+	 var addr= $('#addr').val();
+	 
+	 var tel= $('#tel').val();
+	 
+	 
+		if(userNum==""){
+			
+			//$('#userNum').poshytip('show'); 
+			
+			alert("请填写客户工单");
+			return;
+			
+		}
+		
+		if(customName==""){
+			
+			alert("请填写客户姓名");
+			return;
+			
+		}
+		
+		if(addr==""){
+			
+			alert("请填写详细地址");
+			return;
+			
+		}
+		
+		if(tel==""){
+	
+			alert("电话号码不能为空");
+			return;
+	
+		}
+		
+		
+ }
+ 
+ 
+
 </script>
-<script type="text/javascript" src="@{'/public/javascripts/scripts.js'}"></script>
 
-<script type="text/javascript" src="@{'/public/javascripts/main-frontend.js'}"></script>
-<script type="text/javascript" src="@{'/public/javascripts/bootstrap.js'}"></script>
-<script type="text/javascript" src="@{'/public/javascripts/modernizr.js'}"></script>
-
-<script type="text/javascript" src="@{'/public/javascripts/responsiveslides.js'}"></script>
-<script type="text/javascript" src="@{'/public/javascripts/responsiveslides-call.js'}"></script>
 </body></html>

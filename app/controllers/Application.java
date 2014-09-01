@@ -47,13 +47,17 @@ public class Application extends Controller {
     
     
     public static void yewubanli(String type ){
+    	User user = connected();
+        if(user != null) {
+        	renderArgs.put("user", user);
+        }
     	if(type!=null){
     		if(type.equals("1"))
-    			renderTemplate("Application/yewubanli.html");
+    			renderTemplate("Application/yewubanli.html",user);
     		else if(type.equals("3"))
-    			renderTemplate("Application/yewubanli_project.html");
+    			renderTemplate("Application/yewubanli_project.html",user);
     		else if(type.equals("2"))
-    			renderTemplate("Application/yewubanli_fee.html");
+    			renderTemplate("Application/yewubanli_fee.html",user);
     	}
     	
     	index();
@@ -63,6 +67,7 @@ public class Application extends Controller {
     public static void yewubanli_submit(String userNum,String customName,String addr,String tel,int yewutype){
     	
     	YeWuBanLi yewu = new YeWuBanLi();
+    	yewu.user= connected();
     	yewu.orderNum= userNum;
     	yewu.address=addr;
     	yewu.customName=customName;

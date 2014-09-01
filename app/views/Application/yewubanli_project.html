@@ -80,13 +80,13 @@
 	 
 	 $('#userNum').poshytip({
 			content: '请填写客户工单',
-			showOn: 'none',
+			showOn: 'focus',
 			alignTo: 'target',
-			alignX: 'inner-left',
-		 
-		//alignY: 'center',
+			alignX: 'center',
+			alignY: 'bottom',
 			offsetX: 0,
-			offsetY: 5
+			offsetY: 5,
+			showTimeout: 100
 		});
 	 
 	 $('#customName').poshytip({
@@ -125,51 +125,7 @@
  });
  
  
- function mycheckout(){
-	
-	 var userNum=  $('#userNum').val();
-	 
-	 var customName=  $('#customName').val();
-	 
-	 var addr= $('#addr').val();
-	 
-	 var tel= $('#tel').val();
-	 
-	 
-		if(userNum==""){
-			alert("fff"+userNum);
-			$('#userNum').poshytip('show'); 
-			return;
-			
-		}
-		
-		if(customName==""){
-			
-			$('#customName').poshytip('show'); 
-			return;
-			
-		}
-		
-		if(addr==""){
-			
-			$('#addr').poshytip('show'); 
-			return;
-			
-		}
-		
-		if(tel==""){
-	
-			$('#tel').poshytip('show'); 
-			return;
-	
-		}
-	 
-		$("commentform").submit(function(e){
-			  alert("Submitted");
-			});
- }
- 
- 
+
  </script>          
             
             
@@ -192,7 +148,7 @@
     
     
                                  
-                                    <form action="@{Application.yewubanli_submit()}" method="post" id="commentform" class="comment-form">
+                                    <form action="@{Application.yewubanli_submit()}" method="post" id="commentform" name="commentform" class="comment-form">
                                       <p class="comment-notes"> 必填项已用<span class="required">*</span>标注</p>            
                                       <p class="comment-form-author "><label for="author">用电客户编号 <span class="required">*</span></label> 
                                 <input id="userNum" name="userNum" type="text" value="" size="30" aria-required="true" width="60%" maxlength="100"></p>
@@ -212,7 +168,7 @@
 
 								</select>
 								</p>
-                                                                       <input name="submit" type="button" id="submit" onclick="mycheckout();" value="提交">
+                                                                       <input name="submit" type="submit" id="submit" onclick="mycheckout();" value="提交">
                             <input type="hidden" name="comment_post_ID" value="14" id="comment_post_ID">
 <input type="hidden" name="comment_parent" id="comment_parent" value="0">
                         </p>
@@ -237,6 +193,53 @@
 /* <![CDATA[ */
 var _wpcf7 = {"loaderUrl":"http:\/\/localhost\/wp-content\/plugins\/contact-form-7\/images\/ajax-loader.gif","sending":"\u53d1\u9001\u4e2d\u3002\u3002\u3002"};
 /* ]]> */
+
+ function mycheckout(){
+	
+	 var userNum=  $('#userNum').val();
+	 
+	 var customName=  $('#customName').val();
+	 
+	 var addr= $('#addr').val();
+	 
+	 var tel= $('#tel').val();
+	 
+	 
+		if(userNum==""){
+			
+			//$('#userNum').poshytip('show'); 
+			
+			alert("请填写客户工单");
+			return;
+			
+		}
+		
+		if(customName==""){
+			
+			alert("请填写客户姓名");
+			return;
+			
+		}
+		
+		if(addr==""){
+			
+			alert("请填写详细地址");
+			return;
+			
+		}
+		
+		if(tel==""){
+	
+			alert("电话号码不能为空");
+			return;
+	
+		}
+		
+		alert("222");
+ }
+ 
+ 
+
 </script>
 
 </body></html>
