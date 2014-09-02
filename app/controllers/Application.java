@@ -64,6 +64,27 @@ public class Application extends Controller {
     	
     }
     
+    
+    public static void yewubanli_list(){
+    	User user = connected();
+    	
+    	List<YeWuBanLi> ls= YeWuBanLi.find("byUser", user).fetch();
+        if(user != null) {
+        	renderArgs.put("user", user);
+        }
+        
+        render(ls);
+    	
+    	
+    }
+    
+    public static void show(Long id){
+    	User user = connected();
+    	YeWuBanLi yewu = YeWuBanLi.findById(id);
+    	render(yewu,user);
+    	
+    }
+    
     public static void yewubanli_submit(String userNum,String customName,String addr,String tel,int yewutype){
     	
     	YeWuBanLi yewu = new YeWuBanLi();

@@ -44,7 +44,7 @@ public class YeWuBanLi extends Model {
 	// 办理业务类别
 	public int type;
 
-	public Date date;
+	public Date date =new Date();
 	
 	public String orderstate="0";//0:未处理 1：已发货 2：已签收 3：完成交易
 	

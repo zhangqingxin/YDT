@@ -18,7 +18,7 @@ GET     /ywbl                                  	Application.yewubanli
 POST     /checkUserLogin                        Application.checkUserLogin
 GET     /checkUser                        		Application.checkUser
 POST     /reg                        Application.reg
-
+GET     /personal                        		Application.yewubanli_list
 
 # Admin
 GET      /admin                                 Admin.admin
