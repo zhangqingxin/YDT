@@ -1,4 +1,6 @@
- #{script src:"jquery-1.8.3.min.js" /}
+<script type='text/javascript' src="@{'/public/javascripts/jquery-1.8.3.min.js'}"></script>
+<script type="text/javascript" src="@{'/public/javascripts/jquery-migrate.js'}"></script>
+<script type="text/javascript" src="@{'/public/javascripts/jquery.pop.js'}"></script>
  #{script src:"jquery.validate.min.js"/}
  %{ user = (_caller.user) }%
           <style type="text/css">
@@ -387,6 +389,7 @@
 					                }
    				                }%
    				                <li class="current_page_item"><a id="loginoutBtn" href="@{Application.logout()}">${uname}，退出</a></li>
+   				                <li class="current_page_item"><a id="loginoutBtn" href="@{Application.logout()}">个人工单</a></li>
                                 #{/if} 
                                 #{else}
                                 <li class="current_page_item"><a  id="loginBtn">登陆 / 注册</a></li>

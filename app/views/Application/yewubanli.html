@@ -70,59 +70,10 @@
             </header>
     <!-- header -->
     
-    #{script src:"layer.min.js" /}
 
-#{script src:"jquery.poshytip.min.js" /}
 
  <script type="text/javascript">
- $(function(){
-	 
-	 
-	 $('#userNum').poshytip({
-			content: '请填写客户工单',
-			showOn: 'focus',
-			alignTo: 'target',
-			alignX: 'center',
-			alignY: 'bottom',
-			offsetX: 0,
-			offsetY: 5,
-			showTimeout: 100
-		});
-	 
-	 $('#customName').poshytip({
-			content: '请填写客户姓名',
-			showOn: 'none',
-			alignTo: 'target',
-			alignX: 'inner-left',
-		 
-		//alignY: 'center',
-			offsetX: 0,
-			offsetY: 5
-		});
-	 	$('#addr').poshytip({
-			content: '请填写详细地址',
-			showOn: 'none',
-			alignTo: 'target',
-			alignX: 'inner-left',
-		 
-		//alignY: 'center',
-			offsetX: 0,
-			offsetY: 5
-		});
-		$('#tel').poshytip({
-			content: '电话号码不能为空',
-			showOn: 'none',
-			alignTo: 'target',
-			alignX: 'inner-left',
-		 
-		//alignY: 'center',
-			offsetX: 0,
-			offsetY: 5
-		});
-	 
-	 
-	 
- });
+
  
  
 
@@ -168,7 +119,7 @@
 
 								</select>
 								</p>
-                                                                       <input name="submit" type="submit" id="submit" onclick="mycheckout();" value="提交">
+                                                                       <input name="submit" type="submit" id="submit" onclick="return mycheckout();" value="提交">
                             <input type="hidden" name="comment_post_ID" value="14" id="comment_post_ID">
 <input type="hidden" name="comment_parent" id="comment_parent" value="0">
                         </p>
@@ -210,28 +161,28 @@ var _wpcf7 = {"loaderUrl":"http:\/\/localhost\/wp-content\/plugins\/contact-form
 			//$('#userNum').poshytip('show'); 
 			
 			alert("请填写客户工单");
-			return;
+			return false;
 			
 		}
 		
 		if(customName==""){
 			
 			alert("请填写客户姓名");
-			return;
+			return false;
 			
 		}
 		
 		if(addr==""){
 			
 			alert("请填写详细地址");
-			return;
+			return false;
 			
 		}
 		
 		if(tel==""){
 	
 			alert("电话号码不能为空");
-			return;
+			return false;
 	
 		}
 		
