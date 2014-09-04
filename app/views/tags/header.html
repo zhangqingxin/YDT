@@ -396,16 +396,31 @@
                                 #{/else}
                                 <li class="page_item page-item-14">
                                     <a href="/index">首页</a></li>
+                                    
+                                #{if user}    
                                 <li class="page_item page-item-14"><a
                                     href="/ywbl?type=1">业务办理</a></li>
                                 <li class="page_item page-item-16"><a
                                     href="/ywbl?type=3">工程服务</a></li>
+                                    
+                                <li class="page_item page-item-10"><a
+                                    href="/ywbl?type=2">电费缴纳</a></li>
+                                 #{/if}    
+                                  #{else}
+                                   <li class="page_item page-item-14"><a
+                                    href="#" onclick="alert('请先登录系统！');">业务办理</a></li>
+                                <li class="page_item page-item-16"><a
+                                    href="#"  onclick="alert('请先登录系统！');">工程服务</a></li>
+                                    
+                                <li class="page_item page-item-10"><a
+                                    href="#"  onclick="alert('请先登录系统！');">电费缴纳</a></li>
+                                  #{/else}
+                                        
                                 <li class="page_item page-item-2"><a
                                     href="http://localhost/?page_id=2">我的管家</a></li>
                                 <li class="page_item page-item-12"><a
                                     href="http://localhost/?page_id=12">用电常识</a></li>
-                                <li class="page_item page-item-10"><a
-                                    href="/ywbl?type=2">电费缴纳</a></li>
+                                
                             </ul>
                         </div>
                     </div>
