@@ -111,13 +111,23 @@
 								<input id="addr" name="addr" type="text" value="${yewu.address}" size="30" disabled="disabled"></p>
                                 <p class="comment-form-url  last"><label for="url">联系电话</label>
 								<input id="tel" name="tel" type="text" value="${yewu.phone}" size="30" disabled="disabled"></p>
+								 %{
+					String yewutpye= '';			 
+    				if(yewu.type==1){
+						yewutpye='电费缴纳'
+   					} else if (yewu.type==2){
+						yewutpye='工程服务'
+  			 		}else if (yewu.type==3){
+						yewutpye='业务办理'
+  			 		}
+				}%	
+								
 								<p class="comment-form-url  last"><label for="url">办理业务类别</label>
-								<select id="yewutype" name="yewutype">
-								<option value="1"  >业务1</option>
-								<option value="0" >业务2</option>
+								<input id="tel" name="tel" type="text" value="${yewutpye}" size="30" disabled="disabled"></p>
 								<p class="comment-form-url  last"><label for="url">缴费金额</label>
 								<input id="tel" name="tel" type="text" value="${yewu.fee}" size="30" disabled="disabled"></p>
-								
+								<p class="comment-form-url  last"><label for="url">已上传文件:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+								<a href="../${url}"><font color="red" size="30">文件.jpg</font></a></p>
 								<p class="comment-form-url  last"><label for="url">办理时间</label>
 								<input id="tel" name="tel" type="text" value="${yewu.date}" size="30" ></p>
 								</select>

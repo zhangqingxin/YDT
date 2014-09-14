@@ -3,6 +3,10 @@ package controllers;
 import play.*;
 import play.mvc.*;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.nio.file.Files;
 import java.util.*;
 
 import models.*;
@@ -81,19 +85,41 @@ public class Application extends Controller {
     public static void show(Long id){
     	User user = connected();
     	YeWuBanLi yewu = YeWuBanLi.findById(id);
-    	render(yewu,user);
+    	Image im =null;
+    	String url = "";
+    	if( yewu.imagelist!=null&&yewu.imagelist.size()>0){
+    		
+    		 im = yewu.imagelist.get(0);
+    		 url= im.url;
+    	}
+    	
+    	render(yewu,user,url);
     	
     }
     
-    public static void yewubanli_submit(String userNum,String customName,String addr,String tel,int yewutype){
+    public static void yewubanli_submit(String userNum,String customName,String addr,String tel,int yewutype,File picture){
     	
     	YeWuBanLi yewu = new YeWuBanLi();
+    
+    	play.libs.Files.copy(picture, Play.getFile("public/userFiles/"+picture.getName()));
+    	Image im = new Image();
+    	im.filename=picture.getName();
+    	im.size=picture.length();
+    	im.url="public/userFiles/"+picture.getName();
+    	
+    	String [] tmp= picture.getName().split("\\.");
+    	if(tmp.length>0)
+    		im.type=tmp[tmp.length-1];
+    	else
+    		im.type="";
     	yewu.user= connected();
     	yewu.orderNum= userNum;
     	yewu.address=addr;
     	yewu.customName=customName;
     	yewu.phone=tel;
     	yewu.type=yewutype;
+    	
+    	yewu.imagelist.add(im);
     	yewu.save();
     	 index();
     	

@@ -112,8 +112,23 @@
                    <td>${yewu.orderNum}</td>
                    <td>${yewu.customName}</td>
                    
-                   
-                   <td>${yewu.type}</td>
+                %{
+    				if(yewu.type==1){
+				}%
+					 <td>电费缴纳</td>
+				%{
+   					} else if (yewu.type==2){
+				}%
+ 					<td>工程服务</td>
+				%{
+  			 		}else if (yewu.type==3){
+				}%
+                    <td>业务办理</td>
+              
+                     %{
+  			 		}
+				}%	
+                  
                    <!--  
                    <td>${yewu.fee}</td>
                    <td>${yewu.address}</td>
@@ -124,11 +139,11 @@
 				}%
 					 <td>未处理</td>
 				%{
-   					} else if (order.orderstate=="1"){
+   					} else if (yewu.orderstate=="1"){
 				}%
  					<td>办理中</td>
 				%{
-  			 		}else if (order.orderstate=="2"){
+  			 		}else if (yewu.orderstate=="2"){
 				}%
                     <td>业务结束</td>
               
