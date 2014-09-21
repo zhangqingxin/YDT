@@ -20,6 +20,11 @@ GET     /checkUser                        		Application.checkUser
 POST     /reg                        Application.reg
 GET     /personal                        		Application.yewubanli_list
 
+
+POST     /alipay                        PayAPI.alipay
+POST     /bankPay                        PayAPI.bankPay
+GET     /returnurl                        PayAPI.returnurl
+
 # Admin
 GET      /admin                                 Admin.admin
 GET      /admin/index                           Admin.admin

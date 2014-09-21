@@ -29,6 +29,10 @@ public class YeWuBanLi extends Model {
 	@ManyToOne
 	public User user;
 	
+	// 订单编号（唯一）
+	@Required
+	public String trade_no;
+	
 	// 用电地址
 	public String address;
 	
@@ -46,7 +50,7 @@ public class YeWuBanLi extends Model {
 
 	public Date date =new Date();
 	
-	public String orderstate="0";//0:未处理 1：已发货 2：已签收 3：完成交易
+	public String orderstate="0";//0:未处理 1：已发货 2：已签收 3：完成付款 4:交易结束
 	
 	public int isdelete;
 	

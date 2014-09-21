@@ -11,8 +11,12 @@ import java.util.*;
 
 import models.*;
 
+
+
 public class Application extends Controller {
 
+	public static	java.text.DateFormat format = new java.text.SimpleDateFormat("yyyyMMddhhmmss");
+	
     public static void index() {
     	User user = connected();
         if(user != null) {
@@ -30,6 +34,13 @@ public class Application extends Controller {
 		renderArgs.put("user", user);
 		renderTemplate("Application/index.html",user);
 		//index();
+    }
+    
+    
+    public static void changepd(String oldpass,String newpass){
+    	
+    	
+    	
     }
 
     public static void login(String login_username, String login_passwd) {
@@ -72,7 +83,7 @@ public class Application extends Controller {
     public static void yewubanli_list(){
     	User user = connected();
     	
-    	List<YeWuBanLi> ls= YeWuBanLi.find("byUser", user).fetch();
+    	List<YeWuBanLi> ls= YeWuBanLi.find("user=? order by date desc", user).fetch();
         if(user != null) {
         	renderArgs.put("user", user);
         }
@@ -97,31 +108,40 @@ public class Application extends Controller {
     	
     }
     
-    public static void yewubanli_submit(String userNum,String customName,String addr,String tel,int yewutype,File picture){
+    public static void yewubanli_submit(String userNum,String customName,String addr,String tel,Double fee,int yewutype,File picture){
     	
     	YeWuBanLi yewu = new YeWuBanLi();
     
-    	play.libs.Files.copy(picture, Play.getFile("public/userFiles/"+picture.getName()));
-    	Image im = new Image();
-    	im.filename=picture.getName();
-    	im.size=picture.length();
-    	im.url="public/userFiles/"+picture.getName();
+//    	play.libs.Files.copy(picture, Play.getFile("public/userFiles/"+picture.getName()));
+//    	Image im = new Image();
+//    	im.filename=picture.getName();
+//    	im.size=picture.length();
+//    	im.url="public/userFiles/"+picture.getName();
     	
-    	String [] tmp= picture.getName().split("\\.");
-    	if(tmp.length>0)
-    		im.type=tmp[tmp.length-1];
-    	else
-    		im.type="";
+//    	String [] tmp= picture.getName().split("\\.");
+//    	if(tmp.length>0)
+//    		im.type=tmp[tmp.length-1];
+//    	else
+//    		im.type="";
+    	String s = format.format(new Date());
+    	
+    	String trade_no=s+"_"+yewutype;
     	yewu.user= connected();
     	yewu.orderNum= userNum;
     	yewu.address=addr;
     	yewu.customName=customName;
     	yewu.phone=tel;
     	yewu.type=yewutype;
+    	yewu.fee=fee;
     	
-    	yewu.imagelist.add(im);
+    	
+    	yewu.trade_no=trade_no;
+    	
+    	
+    	//yewu.imagelist.add(im);
+    	User user = yewu.user;
     	yewu.save();
-    	 index();
+    	renderTemplate("Application/confirmPay.html",user,fee,trade_no);
     	
     }
     
@@ -136,8 +156,6 @@ public class Application extends Controller {
 			response.print(false);
 			
 		}
-		
-    	
     }
     
     
@@ -168,8 +186,6 @@ public class Application extends Controller {
         }
         
         String username = session.get("user");
-        
-      
         
         if(username != null) {
         	
