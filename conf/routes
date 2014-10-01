@@ -54,6 +54,10 @@ POST     /admin/gongchengfuwu/uploadImage             GongChengFuWuAdmin.uploadI
 GET      /admin/gongchengfuwu/getImageList            GongChengFuWuAdmin.getImageList
 POST     /admin/gongchengfuwu/deleteImage             GongChengFuWuAdmin.deleteImage
 
+# Yongdianchangshi
+GET      /yongdianchangshi/index                 YongDianChangShiAdmin.index
+GET      /yongdianchangshi/jumin_jibenqingkuang  YongDianChangShiAdmin.jumin_jibenqingkuang
+
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}
 
