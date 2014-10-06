@@ -1,0 +1,32 @@
+@charset "utf-8";
+*{padding:0;margin:0;}
+body{font-family:Arial,Helvetica,sans-serif,"宋体";font-size:12px;color:#000;height:100%;background-color:#CCC;}
+img{border:0px;}
+em,i,b{font-style:normal;}
+table{border-collapse:collapse;}
+a{color:#666;text-decoration:none;}
+a:hover{color:#FF0000;text-decoration:underline;}
+.box1{ width:960px; margin:0 auto; background-color:#FFF;}
+
+.nav1{ float:left; width:100%; background-color:#FFF;}
+.nav3{ margin:0 10px; border-bottom:1px dashed #BEBEBE; padding-top:20px; line-height:25px;}
+.nav3_1{ padding-left:20px; padding-right:8px; font-size:14px;}
+.nav3_5{ font-size:20px; color:#dc2408; font-weight:bold;}
+.nav5{ padding-left:50px; padding-top:10px; float:left; width:90%; font-size:14px; line-height:20px;}
+
+.bank1{ float:left; width:96%; padding-left:30px; padding-top:10px; padding-bottom:50px;}
+.bank3{ float:left; width:170px; padding:8px 0; margin-left:16px;} /*bank list*/
+.bank3_1{ float:left; width:30px; padding-top:15px;}
+.bank3_5{ float:left; width:160px;}
+
+.btn1{ border-bottom:1px dashed #BEBEBE; padding-top:20px;}
+.btn3{ margin-top:20px; margin-left:30px; height:60px; width:80%; float:left;}
+
+.footer1{ border-top:1px dashed #BEBEBE; border-bottom:1px dashed #BEBEBE; background-color:#F3F3F3; width:100%; float:left;}
+.f_desc{ width:76%; line-height:20px; padding-left:46px; padding-bottom:10px; padding-top:10px; color:#666;}
+.f_ver{ width:100%; line-height:16px; padding:10px 0 20px 0; background-color:#FFF; text-align:center; float:right; color:#666;}
+
+.err1{ float:left; width:940px; line-height:36px;}
+.err5{ background:url(../img/icon4.gif) no-repeat 400px 0; float:left; width:100%; text-align:center;}
+.err7{ float:left; width:96%; text-align:center;}
+

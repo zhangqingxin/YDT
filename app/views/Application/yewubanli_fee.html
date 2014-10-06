@@ -9,15 +9,8 @@
 <![endif]-->
 
 
-<link rel="stylesheet" id="contact-form-7-css" href="@{'/public/stylesheets/styles.css'}" type="text/css" media="all">
-<link rel="stylesheet" id="font-awesome-min-css" href="@{'/public/stylesheets/font-awesome_002.css'}" type="text/css" media="all">
-<link rel="stylesheet" id="font-awesome-cdn-css" href="@{'/public/stylesheets/font-awesome.css'}" type="text/css" media="all">
-<link rel="stylesheet" id="dashicons-css-css" href="@{'/public/stylesheets/dashicons.css'}" type="text/css" media="all">
-<link rel="stylesheet" id="bootstrap-css" href="@{'/public/stylesheets/bootstrap.css'}" type="text/css" media="all">
-<link rel="stylesheet" id="prettyPhoto-css" href="@{'/public/stylesheets/prettyPhoto.css'}" type="text/css" media="all">
+
 <link rel="stylesheet" id="style-css" href="@{'/public/stylesheets/style.css'}" type="text/css" media="all">
-<link rel="stylesheet" id="shortcodes-css" href="@{'/public/stylesheets/style-shortcodes.css'}" type="text/css" media="all">
-<link rel="stylesheet" id="responsive-css" href="@{'/public/stylesheets/style-responsive.css'}" type="text/css" media="all">
 
 
 
@@ -92,19 +85,19 @@
     
                                  
                                     <form action="@{Application.yewubanli_submit()}" method="post" id="commentform" name="commentform" class="comment-form" enctype="multipart/form-data">
-                                      <p class="comment-notes"> 必填项已用<span class="required">*</span>标注</p>            
-                                      <p class="comment-form-author "><label for="author">用电客户编号 <span class="required">*</span></label> 
+                                      <p class="comment-notes"> 必填项已用<span class="required">*</span>标注&nbsp;&nbsp;&nbsp;<font color='red'>说明：该项业务仅限于济南市地区供电公司的用电客户，在小区物业、单位或由其他部门代管用电的客户暂时无法使用该项业务。</font>  </p>            
+                                      <p class="comment-form-author "><label for="author">用电客户编号 <span class="required">*</span> &nbsp;&nbsp;&nbsp;<font color='red'>说明：客户在供电公司登记的10位客户编号（或称电号、户号）</font>    </label> 
                                 <input id="userNum" name="userNum" type="text" value="" size="30" aria-required="true" width="60%" maxlength="100"></p>
                                 
                                       
-								<p class="comment-form-email "><label for="email">用电客户名称 <span class="required">*</span></label> 
+								<p class="comment-form-email "><label for="email">用电客户名称 <span class="required">*</span>&nbsp;&nbsp;&nbsp;<font color='red'>说明：在供电公司登记的客户姓名</font></label> 
 								<input id="customName" name="customName" type="text" value="" size="30" aria-required="true"  maxlength="50"></p>
 								
-								<p class="comment-form-url  last"><label for="url">用电地址</label>
+								<p class="comment-form-url  last"><label for="url">用电地址</label>&nbsp;&nbsp;&nbsp;<font color='red'>说明：请详细填写您的地址，具体到房号</font>
 								<input id="addr" name="addr" type="text" value="" size="30" maxlength="200"></p>
-                                <p class="comment-form-url  last"><label for="url">联系电话<span class="required">*</span></label>
+                                <p class="comment-form-url  last"><label for="url">联系电话<span class="required">*</span> &nbsp;&nbsp;&nbsp;<font color='red'>说明：为保证我们的服务质量，请您保持电话畅通。</font></label>
 								<input id="tel" name="tel" type="text" value="" size="30" maxlength="50"></p>
-								 <p class="comment-form-url  last"><label for="url">缴费金额<span class="required">*</span></label>
+								 <p class="comment-form-url  last"><label for="url">缴费金额<span class="required">*</span>&nbsp;&nbsp;&nbsp;<font color='red'>说明：请确保您输入的金额不低于您的电费欠费金额，多余金额我们将为您进行预交处理。</font></label>
 								<input id="fee" name="fee" type="text"  style="ime-mode:disabled" value="" width=50%  maxlength="30" onkeydown="if(event.repeat)event.returnValue=false;//屏蔽连按" onkeypress="initPrice(this)" onblur="checkinp(this)"></p>
 								
                                 <input name="submit" type="submit" id="submit" onclick="return mycheckout();" value="网上付款">

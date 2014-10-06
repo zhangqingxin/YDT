@@ -10,7 +10,7 @@ GET     /favicon.ico                            404
 
 # Map static resources from the /app/public folder to the /public path
 GET     /public/                                staticDir:public
-
+GET     /images/                                staticDir:public/images
 # Index
 POST     /login                                  Application.login
 GET     /index                                  	Application.index
@@ -19,6 +19,8 @@ POST     /checkUserLogin                        Application.checkUserLogin
 GET     /checkUser                        		Application.checkUser
 POST     /reg                        Application.reg
 GET     /personal                        		Application.yewubanli_list
+GET     /listinfo                        		Application.listinfo
+GET     /showinfo                        		Application.showinfo
 
 
 POST     /alipay                        PayAPI.alipay

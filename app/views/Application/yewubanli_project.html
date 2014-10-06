@@ -97,20 +97,19 @@
     
                                  
                                     <form action="@{Application.yewubanli_submit()}" method="post" id="commentform" name="commentform" class="comment-form" enctype="multipart/form-data">
-                                      <p class="comment-notes"> 必填项已用<span class="required">*</span>标注</p>            
-                                      <p class="comment-form-author "><label for="author">用电客户编号 <span class="required">*</span></label> 
+                                      <p class="comment-notes"> 必填项已用<span class="required">*</span>标注 &nbsp;&nbsp;&nbsp;<font color='red'>说明：“用电通”的工程服务为您提供家庭、商铺、公司等各类客户用电线路、电表等安装、检修、维护等业务内容。</font> </p>            
+                                      <p class="comment-form-author "><label for="author">用电客户编号 <span class="required">*</span>&nbsp;&nbsp;&nbsp;<font color='red'>说明：客户在供电公司登记的10位客户编号（或称电号、户号），非供电公司用户此项可以不填。</font> </label> 
                                 <input id="userNum" name="userNum" type="text" value="" size="30" aria-required="true" width="60%" maxlength="100"></p>
                                 
                                       
-								<p class="comment-form-email "><label for="email">用电客户名称 <span class="required">*</span></label> 
+								<p class="comment-form-email "><label for="email">用电客户名称 <span class="required">*</span>&nbsp;&nbsp;&nbsp;<font color='red'>说明：在供电公司登记的客户姓名</font> </label> 
 								<input id="customName" name="customName" type="text" value="" size="30" aria-required="true" maxlength="50"></p>
 								
-								<p class="comment-form-url  last"><label for="url">用电地址</label>
+								<p class="comment-form-url  last"><label for="url">用电地址&nbsp;&nbsp;&nbsp;<font color='red'>说明：请详细填写您的地址，具体到房号</font> </label>
 								<input id="addr" name="addr" type="text" value="" size="30" maxlength="200"></p>
-                                <p class="comment-form-url  last"><label for="url">联系电话</label>
+                                <p class="comment-form-url  last"><label for="url">联系电话&nbsp;&nbsp;&nbsp;<font color='red'>说明：为保证我们的服务质量，请您保持电话畅通。</font> </label>
 								<input id="tel" name="tel" type="text" value="" size="30" maxlength="50"></p>
-								 <p class="comment-form-url  last"><label for="url">上传文件</label>
-								<input id="picture" name="picture" type="file" value="" size="30" maxlength="50"></p>
+								
 								
                                                                        <input name="submit" type="submit" id="submit" onclick="return mycheckout();" value="提交">
                             <input type="hidden" name="comment_post_ID" value="14" id="comment_post_ID">

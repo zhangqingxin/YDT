@@ -36,9 +36,22 @@ public class Application extends Controller {
     }
     
     
-    public static void changepd(String oldpass,String newpass){
+    public static void changepd(String oldpassword,String login_passwd,String login_passwd_re){
+    	StringBuffer sbHtml = new StringBuffer();
+    	User user = connected();
+    	if(user.password.equals(oldpassword)&&login_passwd.equals(login_passwd_re)){
+    		user.password=login_passwd_re;
+    		user.save();
+    		sbHtml.append("<script>alert('修改密码成功！'); window.location.href='/personal'; </script>");
+    	}else{
+    		sbHtml.append("<script>alert('修改密码失败，请重试！'); window.location.href='/personal'; </script>");
+    		
+    	}
+    	
+
     	
     	
+    	renderHtml(sbHtml);
     	
     }
 
@@ -69,9 +82,14 @@ public class Application extends Controller {
     		if(type.equals("1"))
     			renderTemplate("Application/yewubanli.html",user);
     		else if(type.equals("3"))
-    			renderTemplate("Application/yewubanli_project.html",user);
+    			renderTemplate("Application/showproject.html",user);
+    			//renderTemplate("Application/yewubanli_project.html",user);
     		else if(type.equals("2"))
     			renderTemplate("Application/yewubanli_fee.html",user);
+    		else if(type.equals("4"))
+    			renderTemplate("Application/yewubanli_project.html",user);
+    		else if(type.equals("5"))
+    			renderTemplate("Application/showquestion.html",user);
     	}
     	
     	index();
@@ -193,4 +211,20 @@ public class Application extends Controller {
         
         return null;
     }
+	
+	
+	
+	
+	public static void listinfo(){
+		
+		render();
+		
+	}
+	
+	
+	public static void showinfo(String page){
+		User user = connected();
+		renderTemplate("Application/"+page+".html",user);
+		
+	}
 }

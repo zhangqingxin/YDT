@@ -1,0 +1,132 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>用电通电子支付平台</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="@{'/public/stylesheets/bank.css'}" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" id="contact-form-7-css" href="@{'/public/stylesheets/styles.css'}" type="text/css" media="all">
+<link rel="stylesheet" id="font-awesome-min-css" href="@{'/public/stylesheets/font-awesome_002.css'}" type="text/css" media="all">
+<link rel="stylesheet" id="font-awesome-cdn-css" href="@{'/public/stylesheets/font-awesome.css'}" type="text/css" media="all">
+<link rel="stylesheet" id="dashicons-css-css" href="@{'/public/stylesheets/dashicons.css'}" type="text/css" media="all">
+<link rel="stylesheet" id="bootstrap-css" href="@{'/public/stylesheets/bootstrap.css'}" type="text/css" media="all">
+<link rel="stylesheet" id="prettyPhoto-css" href="@{'/public/stylesheets/prettyPhoto.css'}" type="text/css" media="all">
+<link rel="stylesheet" id="style-css" href="@{'/public/stylesheets/style.css'}" type="text/css" media="all">
+<link rel="stylesheet" id="shortcodes-css" href="@{'/public/stylesheets/style-shortcodes.css'}" type="text/css" media="all">
+<link rel="stylesheet" id="responsive-css" href="@{'/public/stylesheets/style-responsive.css'}" type="text/css" media="all">
+
+
+<script type="text/javascript">
+var issubmit=false;
+document.oncontextmenu=function(){return false;}
+function formsubmit(bankId){
+
+		
+		if(bankId=="ali"){
+			document.myform.action="/alipay";
+		}else{
+			
+			document.myform.action="/bankPay";
+			document.myform.bankcode.value=bankId;
+			alert(document.myform.bankcode.value);
+		}
+		
+		document.myform.submit();
+
+}
+</script>
+</head>
+<body>
+
+ #{header user:user /}
+
+<div class="box1">
+  <div class="nav1">
+    <div class="nav3"><span class="nav3_1">&gt;&gt; 应付金额：</span><span class="nav3_5">${fee}元</span></div>
+    <!--div class="nav5">请选择支付方式</div-->
+  </div>
+  <div class="nav1">
+    <div class="bank1">
+    
+<form  method="post" name="myform">
+ 
+	<input type="hidden" name="trade_no" value="${trade_no}" />	
+	<input type="hidden" name="fee" value="${fee}" />	
+	<input type="hidden" name="bankcode" />	
+
+         <div class="bank3">
+     <div class="bank3_5">
+     <img src="@{'/public/images/bank/bank_gsyh2.gif'}" width="130" height="52" title="工商银行" onclick="javascript:formsubmit('ICBCB2C');"  style="cursor:pointer;"/>
+     </div></div>     
+
+         <div class="bank3">
+     <div class="bank3_5">
+     <img src="@{'/public/images/bank/bank_nyyh2.gif'}" width="130" height="52" title="农业银行" onclick="javascript:formsubmit('ABC');"  style="cursor:pointer;"/>
+     </div></div>     
+
+         <div class="bank3">
+     <div class="bank3_5">
+     <img src="@{'/public/images/bank/bank_zgyh2.gif'}" width="130" height="52" title="中国银行" onclick="javascript:formsubmit('BOCB2C');"  style="cursor:pointer;"/>
+     </div></div>     
+
+         <div class="bank3">
+     <div class="bank3_5">
+     <img src="@{'/public/images/bank/bank_jsyh2.gif'}" width="130" height="52" title="建设银行" onclick="javascript:formsubmit('CCB');"  style="cursor:pointer;"/>
+     </div></div>     
+
+         <div class="bank3">
+     <div class="bank3_5">
+     <img src="@{'/public/images/bank/bank_zsyh2.gif'}" width="130" height="52" title="招商银行" onclick="javascript:formsubmit('CMB');"  style="cursor:pointer;"/>
+     </div></div>     
+
+         <div class="bank3">
+     <div class="bank3_5">
+     <img src="@{'/public/images/bank/bank_zgyl.gif'}" width="130" height="52" title="中国银联" onclick="javascript:formsubmit('00011000');"  style="cursor:pointer;"/>
+     </div></div>     
+
+         <div class="bank3">
+     <div class="bank3_5">
+     <img src="@{'/public/images/bank/bank_ztytk.gif'}" width="130" height="52" title="中铁银通卡" onclick="javascript:formsubmit('00011001');"  style="cursor:pointer;"/>
+     </div></div>     
+
+         <div class="bank3">
+     <div class="bank3_5">
+     <img src="@{'/public/images/bank/bank_zfb.gif'}" width="130" height="52" title="支付宝" onclick="javascript:formsubmit('ali');"  style="cursor:pointer;"/>
+     </div></div>     
+
+</form>
+    </div>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <marquee  width="550" ONMOUSEOUT="this.start()" ONMOUSEOVER="this.stop()" scrollamount=4 scrolldelay=100 >
+    
+	</marquee>
+  </div>
+  <!-- div class="nav1">
+    <div class="btn1"></div>
+    <div class="btn3"><a href="#" onclick="formsubmit();"><img src="pages/web/img/btn3.gif" /></a></div>
+  </div-->
+</div> 
+
+<div class="box1">
+  <div class="footer1">
+    <div class="f_desc">
+      <ul>
+        <li>请您选择支付方式。建议使用中国工商银行、中国农业银行、中国银行、中国建设银行、招商银行的银行卡，支付请直接点击相应银行的按钮；如果您使用其他银行的银行卡，请点击“中国银联”按钮；如果您使用支付宝账户支付，请点击“支付宝”按钮。</li>
+		<li>如果您选择银行卡或支付宝账户支付时，请遵守相关银行或支付宝的规定进行操作。您在银行或支付宝页面上进行的任何操作及其产生的任何法律后果，将按照您与银行或支付宝之间签订的合同处理。本网站不承担任何责任。</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="box1">
+  <div class="f_ver"><br />
+    <a target="_blank" href="#">关于我们</a> | <br />
+     版权所有 &copy; 2008-2015 YDT<br />
+ </div>
+</div>
+
+</body>
+</html>

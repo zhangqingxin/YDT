@@ -79,7 +79,7 @@
 
 <body class="page page-id-14 page-template-default layout-responsive header-style1">
 
-<form name = "loginform" id="loginform" action = "@{Application.login()}" method="post">
+<form name = "myform" id="myform" action = "@{Application.changepd()}" method="post">
 		
         <div id="loginBox" class="modify_box">
             <p class="login_close">
@@ -88,7 +88,7 @@
           
             <p class="login_p">
                 <label>旧密码：</label>
-                <input id="login_username" name="login_username" type="text">
+                <input id="oldpassword" name="oldpassword" type="password">
             </p>
             <p class="login_p">
                 <label>新密码：</label>
@@ -153,7 +153,7 @@
       	<tbody >
       	<tr>
       		<td width="10%">用户名：</td>
-      	<td width="30%">张三</td>
+      	<td width="30%">${user.username}</td>
       			<td width="50%"> <li class="current_page_item"><a  id="loginBtn">修改密码</a></li></td>
       	
       	 </tr>

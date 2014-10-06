@@ -85,7 +85,7 @@
     <div id="content-core">
 
         <div id="main">
-        <div id="intro" class="option1"><div id="intro-core"><h1 class="page-title"><span>业务办理</span></h1><div id="breadcrumbs"><div id="breadcrumbs-core"><a href="http://localhost/">Home</a><span class="delimiter"> / </span>业务办理</div></div></div></div>
+        <div id="intro" class="option1"><div id="intro-core"><h1 class="page-title"><span>业务办理</span></h1><div id="breadcrumbs"><div id="breadcrumbs-core"><a href="/">Home</a><span class="delimiter"> / </span>业务办理</div></div></div></div>
         <div id="main-core">
 
             
@@ -100,18 +100,20 @@
     
                                  
                                     <form action="@{Application.yewubanli_submit()}" method="post" id="commentform" name="commentform" class="comment-form" enctype="multipart/form-data">
-                                      <p class="comment-notes"> 必填项已用<span class="required">*</span>标注</p>            
-                                      <p class="comment-form-author "><label for="author">用电客户编号 <span class="required">*</span></label> 
-                                <input id="userNum" name="userNum" type="text" value="" size="30" aria-required="true" width="60%" maxlength="50"></p>
-                                
+                                      <p class="comment-notes"> 必填项已用<span class="required">*</span>标注&nbsp;&nbsp;&nbsp;<font color='red'>说明：“用电通”的业务咨询为您提供安全用电、节约用电、用电办理等各方面的咨询服务。</font> </p>            
+                                                                    
                                       
-								<p class="comment-form-email "><label for="email">用电客户名称 <span class="required">*</span></label> 
+								<p class="comment-form-email "><label for="email">用电客户名称 <span class="required">*</span> &nbsp;&nbsp;&nbsp;<font color='red'>说明：请详细填写您的地址，具体到小区名称或街道门牌号。</font> </label> 
 								<input id="customName" name="customName" type="text" value="" size="30" aria-required="true" maxlength="50"></p>
 								
-								<p class="comment-form-url  last"><label for="url">用电地址</label>
+								<p class="comment-form-url  last"><label for="url">用电地址 &nbsp;&nbsp;&nbsp;<font color='red'>说明：为保证我们的服务质量，请您保持电话畅通。</font> </label>
 								<input id="addr" name="addr" type="text" value="" size="30"   maxlength="200"></p>
-                                <p class="comment-form-url  last"><label for="url">联系电话</label>
+                                <p class="comment-form-url  last"><label for="url">联系电话 &nbsp;&nbsp;&nbsp;<font color='red'>说明：为保证我们的服务质量，请您保持电话畅通。</font> </label>
 								<input id="tel" name="tel" type="text" value="" size="30" maxlength="50"></p>
+								
+								  <p class="comment-form-author "><label for="author">用电客户编号 <span class="required">*</span> &nbsp;&nbsp;&nbsp;<font color='red'>请简述您需要咨询的问题，我们会尽快和您联系。</font> </label> 
+                                <input id="userNum" name="userNum" type="text" value="" size="30" aria-required="true" width="60%" maxlength="50"></p>
+								
 								 <p class="comment-form-url  last"><label for="url">上传文件</label>
 								<input id="picture" name="picture" type="file" value="" size="30" maxlength="50"></p>
 								

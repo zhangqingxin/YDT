@@ -61,7 +61,7 @@ Tags: black, dark, red, one-column, two-columns, right-sidebar, left-sidebar, fi
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, cite,
-del, dfn, em, font, q, s, samp,
+del, dfn, em,  q, s, samp,
 strike, strong,
 ol, ul, li,
 fieldset, form, label, legend,
@@ -1517,6 +1517,8 @@ ul.pricing-table:after,
 	background: #222;
 	border-top: 1px solid #444;
 	padding: 15px 0px;
+	margin-top: 30px;
+	margin-bottom: 10px;
 }
 #sub-footer-core {
 	padding: 0px 10px;
