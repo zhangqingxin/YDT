@@ -221,16 +221,17 @@ public class PayAPI extends Controller{
 					//如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
 					//如果有做过处理，不执行商户的业务程序
 				verifyOK(out_trade_no,"returnurl");
+				Logger.logInfo("###################  laishi " );
+				//该页面可做页面美工编辑
+				renderHtml("验证成功<br />");
+				
+				
+				Logger.logInfo("###################   验证成功 wanbi " );
 				
 			}
 			
 			
-			Logger.logInfo("###################  laishi " );
-			//该页面可做页面美工编辑
-			renderHtml("验证成功<br />");
 			
-			
-			Logger.logInfo("###################   验证成功 wanbi " );
 			//——请根据您的业务逻辑来编写程序（以上代码仅作参考）——
 
 			//////////////////////////////////////////////////////////////////////////////////////////
