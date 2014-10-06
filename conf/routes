@@ -65,6 +65,20 @@ GET      /yongdianchangshi/jumin_jieyueyongdian  YongDianChangShiAdmin.jumin_jie
 GET      /yongdianchangshi/jumin_yongdianbiangeng  YongDianChangShiAdmin.jumin_yongdianbiangeng
 GET      /yongdianchangshi/jumin_weixiuweihu  YongDianChangShiAdmin.jumin_weixiuweihu
 
+GET      /yongdianchangshi/geti_jibenqingkuang  YongDianChangShiAdmin.geti_jibenqingkuang
+GET      /yongdianchangshi/geti_dianfeidianjia  YongDianChangShiAdmin.geti_dianfeidianjia
+GET      /yongdianchangshi/geti_anquanyongdian  YongDianChangShiAdmin.geti_anquanyongdian
+GET      /yongdianchangshi/geti_jieyueyongdian  YongDianChangShiAdmin.geti_jieyueyongdian
+GET      /yongdianchangshi/geti_yongdianbiangeng  YongDianChangShiAdmin.geti_yongdianbiangeng
+GET      /yongdianchangshi/geti_weixiuweihu  YongDianChangShiAdmin.geti_weixiuweihu
+
+GET      /yongdianchangshi/bangong_jibenqingkuang  YongDianChangShiAdmin.bangong_jibenqingkuang
+GET      /yongdianchangshi/bangong_dianfeidianjia  YongDianChangShiAdmin.bangong_dianfeidianjia
+GET      /yongdianchangshi/bangong_anquanyongdian  YongDianChangShiAdmin.bangong_anquanyongdian
+GET      /yongdianchangshi/bangong_jieyueyongdian  YongDianChangShiAdmin.bangong_jieyueyongdian
+GET      /yongdianchangshi/bangong_yongdianbiangeng  YongDianChangShiAdmin.bangong_yongdianbiangeng
+GET      /yongdianchangshi/bangong_weixiuweihu  YongDianChangShiAdmin.bangong_weixiuweihu
+
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}
 
