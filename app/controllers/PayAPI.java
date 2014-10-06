@@ -33,7 +33,9 @@ public class PayAPI extends Controller{
 		//需http://格式的完整路径，不能加?id=123这类自定义参数
 
 		//页面跳转同步通知页面路径
-		String return_url = "http://127.0.0.1:9999/returnurl";
+		
+		String return_url = "http://www.yongdiantong.com/returnurl";
+		//String return_url = "http://127.0.0.1:9999/returnurl";
 		//需http://格式的完整路径，不能加?id=123这类自定义参数，不能写成http://localhost/
 
 		//卖家支付宝帐户
@@ -104,7 +106,7 @@ public class PayAPI extends Controller{
 				//需http://格式的完整路径，不能加?id=123这类自定义参数
 
 				//页面跳转同步通知页面路径
-				String return_url = "http://127.0.0.1:9999/returnurl";
+				String return_url = "http://www.yongdiantong.com/returnurl";
 				//需http://格式的完整路径，不能加?id=123这类自定义参数，不能写成http://localhost/
 
 				//卖家支付宝帐户
