@@ -181,7 +181,7 @@ public class PayAPI extends Controller{
 	
 	
 	public static void returnurl(String out_trade_no,String trade_no,String trade_status ) throws UnsupportedEncodingException{
-		
+		Logger.logInfo("###################    start  returnurl  " );
 		//获取支付宝GET过来反馈信息
 		Map<String,String> params_tp = new HashMap<String,String>();
 		
@@ -242,7 +242,7 @@ public class PayAPI extends Controller{
 	
 	public static void notify_url(String out_trade_no,String trade_no,String trade_status) throws UnsupportedEncodingException{
 		
-
+		Logger.logInfo("###################    start  notify_url  " );
 		
 		//获取支付宝GET过来反馈信息
 		Map<String,String> params_tp = new HashMap<String,String>();
@@ -285,6 +285,8 @@ public class PayAPI extends Controller{
 				verifyOK(out_trade_no,"notify_url");
 				
 			}
+			
+			renderHtml("success");
 			
 				//请不要修改或删除
 			
