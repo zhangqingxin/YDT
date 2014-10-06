@@ -59,6 +59,11 @@ POST     /admin/gongchengfuwu/deleteImage             GongChengFuWuAdmin.deleteI
 # Yongdianchangshi
 GET      /yongdianchangshi/index                 YongDianChangShiAdmin.index
 GET      /yongdianchangshi/jumin_jibenqingkuang  YongDianChangShiAdmin.jumin_jibenqingkuang
+GET      /yongdianchangshi/jumin_dianfeidianjia  YongDianChangShiAdmin.jumin_dianfeidianjia
+GET      /yongdianchangshi/jumin_anquanyongdian  YongDianChangShiAdmin.jumin_anquanyongdian
+GET      /yongdianchangshi/jumin_jieyueyongdian  YongDianChangShiAdmin.jumin_jieyueyongdian
+GET      /yongdianchangshi/jumin_yongdianbiangeng  YongDianChangShiAdmin.jumin_yongdianbiangeng
+GET      /yongdianchangshi/jumin_weixiuweihu  YongDianChangShiAdmin.jumin_weixiuweihu
 
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}
