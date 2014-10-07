@@ -223,11 +223,7 @@ public class PayAPI extends Controller{
 				Logger.logInfo("###################  laishi " );
 				verifyOK(out_trade_no,"returnurl");
 				
-				//该页面可做页面美工编辑
 				renderHtml("验证成功<br />");
-				
-				
-				Logger.logInfo("###################   验证成功 wanbi " );
 				
 			}
 			
@@ -311,7 +307,7 @@ public class PayAPI extends Controller{
 	}
 	
 	
-	public static void  verifyOK(String out_trade_no,String from){
+	public static String  verifyOK(String out_trade_no,String from){
 		
 		String s = format.format(new Date());
 		YeWuBanLi yewu = YeWuBanLi.find("trade_no= ?", out_trade_no).first();
@@ -322,6 +318,7 @@ public class PayAPI extends Controller{
 		
 		else
 			Logger.logInfo("###################    error  time:"+s+",单号:"+out_trade_no+",user:"+session.get("user")+"dataid:"+yewu.id );
+		return "OK";
 		
 		
 	}
