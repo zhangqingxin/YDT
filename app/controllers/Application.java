@@ -90,6 +90,8 @@ public class Application extends Controller {
     			renderTemplate("Application/yewubanli_project.html",user);
     		else if(type.equals("5"))
     			renderTemplate("Application/showquestion.html",user);
+    		else if(type.equals("6"))
+    			renderTemplate("Application/yewubanli_submitquestion.html",user);
     	}
     	
     	index();
@@ -158,7 +160,14 @@ public class Application extends Controller {
     	//yewu.imagelist.add(im);
     	User user = yewu.user;
     	yewu.save();
-    	renderTemplate("Application/confirmPay.html",user,fee,trade_no);
+    	StringBuffer sbHtml = new StringBuffer();
+    	if(yewutype==1){
+    		renderTemplate("Application/confirmPay.html",user,fee,trade_no);
+    	}else{
+    		sbHtml.append("<script>alert('提交成功！'); window.location.href='/'; </script>");
+    		renderHtml(sbHtml);
+    	}
+    	
     	
     }
     

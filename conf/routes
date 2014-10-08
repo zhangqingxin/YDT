@@ -27,6 +27,9 @@ POST     /alipay                        PayAPI.alipay
 POST     /bankPay                        PayAPI.bankPay
 GET     /returnurl                        PayAPI.returnurl
 GET     /notify_url                        PayAPI.notify_url
+
+
+GET     /showresult                        PayAPI.showresult
 # Admin
 GET      /admin                                 Admin.admin
 GET      /admin/index                           Admin.admin

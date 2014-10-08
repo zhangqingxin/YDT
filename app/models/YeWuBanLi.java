@@ -56,6 +56,8 @@ public class YeWuBanLi extends Model {
 	
 	public String des = "";
 	
+	public String question = "";
+	
 	@OneToMany(cascade=CascadeType.ALL,fetch = FetchType.LAZY, orphanRemoval=true)
 	public List<Image> imagelist;
 	

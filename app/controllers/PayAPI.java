@@ -325,6 +325,13 @@ public class PayAPI extends Controller{
 	
 	
 	
+	public static void showresult(){
+		
+		renderTemplate("Application/showresult.html");
+		
+		
+	}
+	
 	
 	/* 
 	 * 返回长度为【strLength】的随机数，在前面补0 
