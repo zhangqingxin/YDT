@@ -30,7 +30,7 @@ function formsubmit(bankId){
 			
 			document.myform.action="/bankPay";
 			document.myform.bankcode.value=bankId;
-			alert(document.myform.bankcode.value);
+			//alert(document.myform.bankcode.value);
 		}
 		
 		document.myform.submit();
@@ -81,15 +81,7 @@ function formsubmit(bankId){
      <img src="@{'/public/images/bank/bank_zsyh2.gif'}" width="130" height="52" title="招商银行" onclick="javascript:formsubmit('CMB');"  style="cursor:pointer;"/>
      </div></div>     
 
-         <div class="bank3">
-     <div class="bank3_5">
-     <img src="@{'/public/images/bank/bank_zgyl.gif'}" width="130" height="52" title="中国银联" onclick="javascript:formsubmit('00011000');"  style="cursor:pointer;"/>
-     </div></div>     
-
-         <div class="bank3">
-     <div class="bank3_5">
-     <img src="@{'/public/images/bank/bank_ztytk.gif'}" width="130" height="52" title="中铁银通卡" onclick="javascript:formsubmit('00011001');"  style="cursor:pointer;"/>
-     </div></div>     
+     
 
          <div class="bank3">
      <div class="bank3_5">
