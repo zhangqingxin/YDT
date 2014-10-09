@@ -10,16 +10,18 @@
 <script type="text/javascript" src="@{'/public/javascripts/ajaxfileupload.js'}"></script>
 </head>
 <body>
-    <table id="orderdatas" class="easyui-datagrid" style="border: false; width: auto; height: auto" data-options="singleSelect:true,pagination:true,url:'/admin/yewubanli/getorders',method:'get',toolbar:'#tb'">
+    <table id="orderdatas" class="easyui-datagrid" nowrap="false" style="border: false; width: auto; height: auto" data-options="singleSelect:true,pagination:true,url:'/admin/yewubanli/getorders',method:'get',toolbar:'#tb'">
         <thead>
             <tr>
                 <th data-options="field:'ck',checkbox:true"></th>
+                <!-- 
                 <th data-options="field:'ordernum',width:120,align:'center'">订单编号</th>
                 <th data-options="field:'registerid',width:120,align:'center'">客户编号</th>
-                <th data-options="field:'date',width:130,align:'center'">下单时间</th>
                 <th data-options="field:'orderprice',width:60,align:'center'">费用</th>
+                 -->
+                <th data-options="field:'date',width:130,align:'center'">下单时间</th>
                 <th data-options="field:'address',width:400,align:'center'">地址</th>
-                <th data-options="field:'name',width:80,align:'center'">联系人</th>
+                <th data-options="field:'name',width:80,align:'center'">客户名称</th>
                 <th data-options="field:'tel',width:100,align:'center'">联系电话</th>
                 <th data-options="field:'state',width:60,align:'center',formatter:function(val,rec){
                     if (val == '0') {
@@ -32,7 +34,7 @@
                         return '交易完成'
                     }
                 }">订单状态</th>
-                <th data-options="field:'other',width:200,align:'center'">备注</th>
+                <th data-options="field:'other',width:400,align:'left'">咨询内容</th>
             </tr>
         </thead>
     </table>

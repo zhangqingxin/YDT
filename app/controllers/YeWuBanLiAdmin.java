@@ -75,8 +75,8 @@ public class YeWuBanLiAdmin extends Controller {
         	tel = order.phone;
         }
         obj.addProperty("tel", tel);
-        obj.addProperty("name", order.user.realname);
-        obj.addProperty("other", order.des);
+        obj.addProperty("name", order.customName);
+        obj.addProperty("other", order.question);
         
         return obj;
     }
