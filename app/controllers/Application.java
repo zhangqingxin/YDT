@@ -127,7 +127,7 @@ public class Application extends Controller {
     	
     }
     
-    public static void yewubanli_submit(String userNum,String customName,String addr,String tel,Double fee,int yewutype,File picture){
+    public static void yewubanli_submit(String userNum,String customName,String addr,String tel,Double fee,int yewutype,String projectType){
     	
     	YeWuBanLi yewu = new YeWuBanLi();
     
@@ -156,6 +156,8 @@ public class Application extends Controller {
     	
     	yewu.trade_no=trade_no;
     	
+    	yewu.question= params.get("question");
+    	yewu.projectType=projectType;
     	
     	//yewu.imagelist.add(im);
     	User user = yewu.user;
