@@ -1,82 +1,180 @@
 package controllers;
 
+import models.User;
 import play.mvc.Controller;
 
 public class YongDianChangShiAdmin extends Controller {
 
 	public static void index() {
-		render();
+		User user = connected();
+        if(user != null) {
+        	renderArgs.put("user", user);
+        }
+        render();
 	}
 
 	public static void jumin_jibenqingkuang() {
-		render();
+		User user = connected();
+        if(user != null) {
+        	renderArgs.put("user", user);
+        }
+        render();
 	}
 
 	public static void jumin_dianfeidianjia() {
-		render();
+		User user = connected();
+        if(user != null) {
+        	renderArgs.put("user", user);
+        }
+        render();
 	}
 	
 	public static void jumin_anquanyongdian() {
-		render();
+		User user = connected();
+        if(user != null) {
+        	renderArgs.put("user", user);
+        }
+        render();
 	}
 	
 	public static void jumin_jieyueyongdian() {
-		render();
+		User user = connected();
+        if(user != null) {
+        	renderArgs.put("user", user);
+        }
+        render();
 	}
 	
 	public static void jumin_yongdianbiangeng() {
-		render();
+		User user = connected();
+        if(user != null) {
+        	renderArgs.put("user", user);
+        }
+        render();
 	}
 	
 	public static void jumin_weixiuweihu() {
-		render();
+		User user = connected();
+        if(user != null) {
+        	renderArgs.put("user", user);
+        }
+        render();
 	}
 	
 	public static void geti_jibenqingkuang() {
-		render();
+		User user = connected();
+        if(user != null) {
+        	renderArgs.put("user", user);
+        }
+        render();
 	}
 	
 	public static void geti_jieyueyongdian() {
-		render();
+		User user = connected();
+        if(user != null) {
+        	renderArgs.put("user", user);
+        }
+        render();
 	}
 	
 	public static void geti_anquanyongdian() {
-		render();
+		User user = connected();
+        if(user != null) {
+        	renderArgs.put("user", user);
+        }
+        render();
 	}
 	
 	public static void geti_yongdianbiangeng() {
-		render();
+		User user = connected();
+        if(user != null) {
+        	renderArgs.put("user", user);
+        }
+        render();
 	}
 	
 	public static void geti_dianfeidianjia() {
-		render();
+		User user = connected();
+        if(user != null) {
+        	renderArgs.put("user", user);
+        }
+        render();
 	}
 	
 	public static void geti_weixiuweihu() {
-		render();
+		User user = connected();
+        if(user != null) {
+        	renderArgs.put("user", user);
+        }
+        render();
 	}
 	
 	public static void bangong_jibenqingkuang() {
-		render();
+		User user = connected();
+        if(user != null) {
+        	renderArgs.put("user", user);
+        }
+        render();
 	}
 	
 	public static void bangong_jieyueyongdian() {
-		render();
+		User user = connected();
+        if(user != null) {
+        	renderArgs.put("user", user);
+        }
+        render();
 	}
 	
 	public static void bangong_anquanyongdian() {
-		render();
+		User user = connected();
+        if(user != null) {
+        	renderArgs.put("user", user);
+        }
+        render();
 	}
 	
 	public static void bangong_yongdianbiangeng() {
-		render();
+		User user = connected();
+        if(user != null) {
+        	renderArgs.put("user", user);
+        }
+        render();
 	}
 	
 	public static void bangong_dianfeidianjia() {
-		render();
+		User user = connected();
+        if(user != null) {
+        	renderArgs.put("user", user);
+        }
+        render();
 	}
 	
 	public static void bangong_weixiuweihu() {
-		render();
+		User user = connected();
+        if(user != null) {
+        	renderArgs.put("user", user);
+        }
+        render();
 	}
+
+	private static User connected() {
+        if(renderArgs.get("user") != null) {
+            return renderArgs.get("user", User.class);
+        }
+        
+        String userid = session.get("userid");
+       
+        if(userid != null) {
+            return User.findById(Long.valueOf(userid));
+        }
+        
+        String username = session.get("user");
+        
+        if(username != null) {
+        	
+            return User.find("byUsername", username).first();
+        }
+        
+        return null;
+    }
 }
