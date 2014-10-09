@@ -17,9 +17,11 @@
                 <th data-options="field:'ordernum',width:120,align:'center'">订单编号</th>
                 <th data-options="field:'registerid',width:120,align:'center'">客户编号</th>
                 <th data-options="field:'date',width:130,align:'center'">下单时间</th>
+                <!-- 
                 <th data-options="field:'orderprice',width:60,align:'center'">费用</th>
-                <th data-options="field:'address',width:400,align:'center'">地址</th>
+                 -->
                 <th data-options="field:'name',width:80,align:'center'">联系人</th>
+                <th data-options="field:'address',width:400,align:'center'">地址</th>
                 <th data-options="field:'tel',width:100,align:'center'">联系电话</th>
                 <th data-options="field:'state',width:60,align:'center',formatter:function(val,rec){
                     if (val == '0') {
@@ -32,7 +34,21 @@
                         return '交易完成'
                     }
                 }">订单状态</th>
-                <th data-options="field:'other',width:200,align:'center'">备注</th>
+                <th data-options="field:'type',width:200,align:'center',formatter:function(val,rec){
+                    if (val == '0') {
+                        return '家庭内部线路安装检修维护';
+                    } else if (val == '1') {
+                        return '家庭户外线路安装检修维护';
+                    } else if (val == '2') {
+                        return '非居民用户用电线路安装检修维护';
+                    } else if (val == '3') {
+                        return '电表新装增容业务施工';
+                    } else if (val == '4') {
+                        return '变压器新装增容业务施工';
+                    } else if (val == '5') {
+                        return '其他';
+                    }
+                }">工程服务类别</th>
             </tr>
         </thead>
     </table>

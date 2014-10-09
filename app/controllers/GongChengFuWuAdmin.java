@@ -77,8 +77,9 @@ public class GongChengFuWuAdmin extends Controller {
         	tel = order.phone;
         }
         obj.addProperty("tel", tel);
-        obj.addProperty("name", order.user.realname);
+        obj.addProperty("name", order.customName);
         obj.addProperty("other", order.des);
+        obj.addProperty("type", order.type);
         
         return obj;
     }

@@ -36,7 +36,7 @@ public class YeWuBanLi extends Model {
 	// 用电地址
 	public String address;
 	
-	// 用电地址
+	// 用电客户名称
 	public String customName;
 
 	// 缴费金额
