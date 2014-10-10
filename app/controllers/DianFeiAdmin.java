@@ -7,8 +7,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import models.DianFei;
 import models.Image;
+import models.YeWuBanLi;
 import play.Play;
 import play.libs.Files;
 import play.mvc.Controller;
@@ -31,27 +31,27 @@ public class DianFeiAdmin extends Controller {
     		page = page + 1;
     	}
     	int start = (page-1) * rows;
-    	List<DianFei> orderList;
+    	List<YeWuBanLi> orderList;
     	long count = 0;
     	if (startdate !=null && enddate != null) {
     		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
     		Date sDate = sf.parse(startdate);
     		Date eDate = sf.parse(enddate);
-    		orderList = DianFei.find("date >= ? and date <= ? and isdelete = '0' order by date desc",sDate, eDate).from(start).fetch(rows);
+    		orderList = YeWuBanLi.find("type = ? and date >= ? and date <= ? and isdelete = '0' order by date desc",1,sDate, eDate).from(start).fetch(rows);
     		count = orderList.size();
     	} else {
-    		orderList = DianFei.find("isdelete = '0' order by date desc").from(start).fetch(rows);
-    		count = DianFei.count();
+    		orderList = YeWuBanLi.find("type=1 and isdelete = '0' order by date desc").from(start).fetch(rows);
+    		count = YeWuBanLi.count();
     	}
         
         renderText(generateJson(orderList, count));
     }
     
-    public static JsonObject generateJson(List<DianFei> list, long count) {
+    public static JsonObject generateJson(List<YeWuBanLi> list, long count) {
         JsonObject json = new JsonObject();
         json.addProperty("total", count);
         JsonArray array = new JsonArray();
-        for(DianFei order: list) {
+        for(YeWuBanLi order: list) {
             JsonObject obj = getOrderJsonObj(order);
             array.add(obj);
         }
@@ -59,7 +59,7 @@ public class DianFeiAdmin extends Controller {
         return json;
     }
     
-    private static JsonObject getOrderJsonObj(DianFei order) {
+    private static JsonObject getOrderJsonObj(YeWuBanLi order) {
     	JsonObject obj = new JsonObject();
     	if (order == null) {
     		return obj;
@@ -85,9 +85,9 @@ public class DianFeiAdmin extends Controller {
         return obj;
     }
     
-    public static void chageOrderStatus(List<String> id, String status) {
-    	for (String ordernum: id) {
-    		DianFei order = DianFei.find("byOrderNum", ordernum).first();
+    public static void chageOrderStatus(List<Long> id, String status) {
+    	for (Long orderid: id) {
+    		YeWuBanLi order = YeWuBanLi.find("byId", orderid).first();
     		order.orderstate = status;
     		order.save();
     	}
@@ -95,14 +95,14 @@ public class DianFeiAdmin extends Controller {
     
     public static void deleteOrder(Long[] id) {
     	for (int i=0;i<id.length;i++) {
-    		DianFei order = DianFei.findById(id[i]);
+    		YeWuBanLi order = YeWuBanLi.findById(id[i]);
     		order.isdelete = 1;
     		order.save();
     	}
     }
 
-    public static void uploadImage(String data, File fileupload) {
-    	DianFei df = DianFei.find("byOrderNum", data).first();
+    public static void uploadImage(Long data, File fileupload) {
+    	YeWuBanLi df = YeWuBanLi.find("byId", data).first();
     	if (df != null) {
     		String url = "/public/userimage/" + Utils.getImageFileId();
     		Files.copy(fileupload, Play.getFile(url));
@@ -121,8 +121,8 @@ public class DianFeiAdmin extends Controller {
     	}
     }
     
-    public static void deleteImage(String orderid, String id) {
-    	DianFei df = DianFei.find("byOrderNum", orderid).first();
+    public static void deleteImage(Long orderid, String id) {
+    	YeWuBanLi df = YeWuBanLi.find("byId", orderid).first();
     	Image todel = null;
     	if (df != null && df.imagelist != null) {
     		for (Image image: df.imagelist) {
@@ -142,8 +142,8 @@ public class DianFeiAdmin extends Controller {
     	}
     }
     
-    public static void getImageList(String id) {
-    	DianFei df = DianFei.find("byOrderNum", id).first();
+    public static void getImageList(Long id) {
+    	YeWuBanLi df = YeWuBanLi.find("byId", id).first();
     	if (df != null) {
     		JsonObject list = new JsonObject();
     		list.addProperty("total", df.imagelist.size());

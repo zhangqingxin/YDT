@@ -14,7 +14,7 @@
 		<thead>
 			<tr>
 			    <th data-options="field:'ck',checkbox:true"></th>
-				<th data-options="field:'ordernum',width:120,align:'center'">订单编号</th>
+				<th data-options="field:'orderid',width:120,align:'center'">订单编号</th>
 				<th data-options="field:'registerid',width:120,align:'center'">客户编号</th>
 				<th data-options="field:'date',width:130,align:'center'">下单时间</th>
 				<th data-options="field:'orderprice',width:60,align:'center'">费用</th>
@@ -54,7 +54,7 @@
                     var rows = $('#orderdatas').datagrid('getSelections');
                     var ids = '';
 		            for(var i=0; i<rows.length; i++){
-		                ids += 'id='+ rows[i].ordernum;
+		                ids += 'id='+ rows[i].orderid;
 		                if (i != rows.length - 1) {
 		                    ids+='&'
 		                }
@@ -129,7 +129,7 @@
 				return;
 			}
 			var rows = $('#orderdatas').datagrid('getSelections');
-			var id = rows[0].ordernum;
+			var id = rows[0].orderid;
 			$.ajaxFileUpload({
 				url : '/admin/dianfei/uploadImage',
 				secureuri : false,
@@ -205,16 +205,16 @@
 				return;
 			}
 			var rows = $('#orderdatas').datagrid('getSelections');
-            var id = rows[0].ordernum;
+            var id = rows[0].orderid;
             reloadFiles(id);
 			
         });
 
-		function reloadFiles(ordernum) {
+		function reloadFiles(orderid) {
 			$.ajax({
                 url:'/admin/dianfei/getImageList',  
                 type:'GET',
-                data:'id='+ordernum,
+                data:'id='+orderid,
                 success:function(data){
                     $('#files').datagrid({
                         data: []
@@ -229,7 +229,7 @@
                             filename:r.filename,
                             size:r.size,
                             url:'<a onclick="openImage(\''+r.url+'\')"><font color="0000ff">打开</font></a>',
-                            oper:"<a onclick='deleteimagerow("+ordernum+","+r.id+")'><font color='0000ff'>删除</font></a>"
+                            oper:"<a onclick='deleteimagerow("+orderid+","+r.id+")'><font color='0000ff'>删除</font></a>"
                         });
                     }
                     $("#statusdialog").dialog("open");
@@ -241,15 +241,15 @@
 		}
 		
 		
-		function deleteimagerow(ordernum,id) {
+		function deleteimagerow(orderid,id) {
 			$.ajax({
                 url:'/admin/dianfei/deleteImage',  
                 type:'POST',
-                data:'id='+id+"&orderid="+ordernum,
+                data:'id='+id+"&orderid="+orderid,
                 success:function(data){
                 	if (data=='success') {
                 		alert('删除成功!');
-                	    reloadFiles(ordernum);
+                	    reloadFiles(orderid);
                 	} else {
                 		alert('删除失败!');
                 	}

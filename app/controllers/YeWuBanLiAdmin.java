@@ -83,7 +83,7 @@ public class YeWuBanLiAdmin extends Controller {
 
     public static void chageOrderStatus(List<Long> id, String status) {
     	for (Long orderid: id) {
-    		YeWuBanLi order = YeWuBanLi.find("id", orderid).first();
+    		YeWuBanLi order = YeWuBanLi.find("byId", orderid).first();
     		order.orderstate = status;
     		order.save();
     	}
@@ -98,7 +98,7 @@ public class YeWuBanLiAdmin extends Controller {
     }
     
     public static void uploadImage(Long data, File fileupload) {
-    	YeWuBanLi df = YeWuBanLi.find("id", data).first();
+    	YeWuBanLi df = YeWuBanLi.find("byId", data).first();
     	if (df != null) {
     		String url = "/public/userimage/" + Utils.getImageFileId();
     		Files.copy(fileupload, Play.getFile(url));
@@ -118,7 +118,7 @@ public class YeWuBanLiAdmin extends Controller {
     }
     
     public static void deleteImage(Long orderid, String id) {
-    	YeWuBanLi df = YeWuBanLi.find("id", orderid).first();
+    	YeWuBanLi df = YeWuBanLi.find("byId", orderid).first();
     	Image todel = null;
     	if (df != null && df.imagelist != null) {
     		for (Image image: df.imagelist) {
@@ -139,7 +139,7 @@ public class YeWuBanLiAdmin extends Controller {
     }
     
     public static void getImageList(Long id) {
-    	YeWuBanLi df = YeWuBanLi.find("id", id).first();
+    	YeWuBanLi df = YeWuBanLi.find("byId", id).first();
     	if (df != null) {
     		JsonObject list = new JsonObject();
     		list.addProperty("total", df.imagelist.size());
