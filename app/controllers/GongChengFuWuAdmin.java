@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import models.GongChengFuWu;
+import models.YeWuBanLi;
 import models.Image;
 
 import com.google.gson.JsonArray;
@@ -29,27 +29,27 @@ public class GongChengFuWuAdmin extends Controller {
     		page = page + 1;
     	}
     	int start = (page-1) * rows;
-    	List<GongChengFuWu> orderList;
+    	List<YeWuBanLi> orderList;
     	long count = 0;
     	if (startdate !=null && enddate != null) {
     		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
     		Date sDate = sf.parse(startdate);
     		Date eDate = sf.parse(enddate);
-    		orderList = GongChengFuWu.find("date >= ? and date <= ? and isdelete = '0' order by date desc",sDate, eDate).from(start).fetch(rows);
+    		orderList = YeWuBanLi.find("type = ?, date >= ? and date <= ? and isdelete = '0' order by date desc",2,sDate, eDate).from(start).fetch(rows);
     		count = orderList.size();
     	} else {
-    		orderList = GongChengFuWu.find("isdelete = '0' order by date desc").from(start).fetch(rows);
-    		count = GongChengFuWu.count();
+    		orderList = YeWuBanLi.find("isdelete = '0' and type=2 order by date desc").from(start).fetch(rows);
+    		count = YeWuBanLi.count();
     	}
         
         renderText(generateJson(orderList, count));
     }
     
-    public static JsonObject generateJson(List<GongChengFuWu> list, long count) {
+    public static JsonObject generateJson(List<YeWuBanLi> list, long count) {
         JsonObject json = new JsonObject();
         json.addProperty("total", count);
         JsonArray array = new JsonArray();
-        for(GongChengFuWu order: list) {
+        for(YeWuBanLi order: list) {
             JsonObject obj = getOrderJsonObj(order);
             array.add(obj);
         }
@@ -57,7 +57,7 @@ public class GongChengFuWuAdmin extends Controller {
         return json;
     }
     
-    private static JsonObject getOrderJsonObj(GongChengFuWu order) {
+    private static JsonObject getOrderJsonObj(YeWuBanLi order) {
     	JsonObject obj = new JsonObject();
     	if (order == null) {
     		return obj;
@@ -84,9 +84,9 @@ public class GongChengFuWuAdmin extends Controller {
         return obj;
     }
     
-    public static void chageOrderStatus(List<String> id, String status) {
-    	for (String ordernum: id) {
-    		GongChengFuWu order = GongChengFuWu.find("byOrderNum", ordernum).first();
+    public static void chageOrderStatus(List<Long> id, String status) {
+    	for (Long orderid: id) {
+    		YeWuBanLi order = YeWuBanLi.find("id", orderid).first();
     		order.orderstate = status;
     		order.save();
     	}
@@ -94,14 +94,14 @@ public class GongChengFuWuAdmin extends Controller {
     
     public static void deleteOrder(Long[] id) {
     	for (int i=0;i<id.length;i++) {
-    		GongChengFuWu order = GongChengFuWu.findById(id[i]);
+    		YeWuBanLi order = YeWuBanLi.findById(id[i]);
     		order.isdelete = 1;
     		order.save();
     	}
     }
 
-    public static void uploadImage(String data, File fileupload) {
-    	GongChengFuWu df = GongChengFuWu.find("byOrderNum", data).first();
+    public static void uploadImage(Long data, File fileupload) {
+    	YeWuBanLi df = YeWuBanLi.find("id", data).first();
     	if (df != null) {
     		String url = "/public/userimage/" + Utils.getImageFileId();
     		Files.copy(fileupload, Play.getFile(url));
@@ -116,12 +116,12 @@ public class GongChengFuWuAdmin extends Controller {
     		obj.addProperty("result", "success");
     		renderHtml("success");
     	} else {
-    		System.out.println("ERROR: Can't find OrderNum at " + data);
+    		System.out.println("ERROR: Can't find id at " + data);
     	}
     }
     
-    public static void deleteImage(String orderid, String id) {
-    	GongChengFuWu df = GongChengFuWu.find("byOrderNum", orderid).first();
+    public static void deleteImage(Long orderid, String id) {
+    	YeWuBanLi df = YeWuBanLi.find("id", orderid).first();
     	Image todel = null;
     	if (df != null && df.imagelist != null) {
     		for (Image image: df.imagelist) {
@@ -141,8 +141,8 @@ public class GongChengFuWuAdmin extends Controller {
     	}
     }
     
-    public static void getImageList(String id) {
-    	GongChengFuWu df = GongChengFuWu.find("byOrderNum", id).first();
+    public static void getImageList(Long id) {
+    	YeWuBanLi df = YeWuBanLi.find("id", id).first();
     	if (df != null) {
     		JsonObject list = new JsonObject();
     		list.addProperty("total", df.imagelist.size());
@@ -158,7 +158,7 @@ public class GongChengFuWuAdmin extends Controller {
     		list.add("rows", array);
     		renderText(list);
     	} else {
-    		System.out.println("ERROR: Can't find OrderNum at " + id);
+    		System.out.println("ERROR: Can't find id at " + id);
     	}
     }
 }
