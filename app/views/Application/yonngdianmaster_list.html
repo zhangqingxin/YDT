@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<!-- saved from url=(0028)http://localhost/?page_id=14 -->
+<html lang="zh-CN" class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>我的管家 | 用电通</title>
+<!--[if lt IE 9]>
+<script src="http://localhost/wp-content/themes/minamaze/lib/scripts/html5.js" type="text/javascript"></script>
+<![endif]-->
+
+
+<link rel="stylesheet" id="style-css" href="@{'/public/stylesheets/style.css'}" type="text/css" media="all">
+
+
+
+<!-- 
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://localhost/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://localhost/wp-includes/wlwmanifest.xml"> 
+ -->
+
+    <style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+
+<style type="text/css">#yddContainer{display:block;font-family:Microsoft YaHei;position:relative;width:100%;height:100%;top:-4px;left:-4px;font-size:12px;border:1px solid}#yddTop{display:block;height:22px}#yddTopBorderlr{display:block;position:static;height:17px;padding:2px 28px;line-height:17px;font-size:12px;color:#5079bb;font-weight:bold;border-style:none solid;border-width:1px}#yddTopBorderlr .ydd-sp{position:absolute;top:2px;height:0;overflow:hidden}.ydd-icon{left:5px;width:17px;padding:0px 0px 0px 0px;padding-top:17px;background-position:-16px -44px}.ydd-close{right:5px;width:16px;padding-top:16px;background-position:left -44px}#yddKeyTitle{float:left;text-decoration:none}#yddMiddle{display:block;margin-bottom:10px}.ydd-tabs{display:block;margin:5px 0;padding:0 5px;height:18px;border-bottom:1px solid}.ydd-tab{display:block;float:left;height:18px;margin:0 5px -1px 0;padding:0 4px;line-height:18px;border:1px solid;border-bottom:none}.ydd-trans-container{display:block;line-height:160%}.ydd-trans-container a{text-decoration:none;}#yddBottom{position:absolute;bottom:0;left:0;width:100%;height:22px;line-height:22px;overflow:hidden;background-position:left -22px}.ydd-padding010{padding:0 10px}#yddWrapper{color:#252525;z-index:10001;background:url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ab20.png);}#yddContainer{background:#fff;border-color:#4b7598}#yddTopBorderlr{border-color:#f0f8fc}#yddWrapper .ydd-sp{background-image:url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ydd-sprite.png)}#yddWrapper a,#yddWrapper a:hover,#yddWrapper a:visited{color:#50799b}#yddWrapper .ydd-tabs{color:#959595}.ydd-tabs,.ydd-tab{background:#fff;border-color:#d5e7f3}#yddBottom{color:#363636}#yddWrapper{min-width:250px;max-width:400px;}</style><style>[touch-action="none"]{ -ms-touch-action: none; touch-action: none; }[touch-action="pan-x"]{ -ms-touch-action: pan-x; touch-action: pan-x; }[touch-action="pan-y"]{ -ms-touch-action: pan-y; touch-action: pan-y; }[touch-action="scroll"],[touch-action="pan-x pan-y"],[touch-action="pan-y pan-x"]{ -ms-touch-action: pan-x pan-y; touch-action: pan-x pan-y; }</style><style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -90px !important;
+    width: 180px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+
+
+  .modify_box {
+            display: none;
+            background: #fff;
+           
+            width: 446px;
+            position: fixed;
+            left: 50%;
+            top: 240px;
+            overflow: hidden;
+            z-index: 20;
+        }
+
+ .modify_p {
+        	
+        	margin:10px auto;
+        	
+           
+        }
+        
+        
+         .modify_p label, .login_p input {
+            vertical-align: middle;
+            display: inline-block;
+        }
+        .modify_p label {
+        	text-align: right;
+            color: #444;
+            font-weight: 700;
+            font-size: 13px;
+            width: 102px;
+        }
+</style></head>
+
+<body class="page page-id-14 page-template-default layout-responsive header-style1">
+
+<form name = "myform" id="myform" action = "@{Application.changepd()}" method="post">
+		
+        <div id="loginBox" class="modify_box">
+            <p class="login_close">
+                <a id="loginClose" onclick="closelogin">关闭</a>
+            </p>
+          
+            <p class="login_p">
+                <label>旧密码：</label>
+                <input id="oldpassword" name="oldpassword" type="password">
+            </p>
+            <p class="login_p">
+                <label>新密码：</label>
+                <input id="login_passwd" name="login_passwd" type="password">
+            </p>
+            <p class="login_p">
+                <label>新密码：</label>
+                <input id="login_passwd_re" name="login_passwd_re" type="password">
+            </p>
+           
+            <p class="login_btn">
+            
+            <input type="submit" value="确认修改" />
+            </p>
+           
+        </div>
+        <div class="filter" style="display:none" id="filter"></div>
+		</form>
+
+
+<form name = "myform2" id="myform2" action = "@{Application.addSubinfo()}" method="post">
+		
+        <div id="addbox" class="modify_box">
+            <p class="login_close">
+                <a id="addUserClose" onclick="addUserClose">关闭</a>
+            </p>
+          
+            <p class="login_p">
+                <label>户号：</label>
+                <input id="account" name="account" type="text" maxlength="100">
+            </p>
+            <p class="login_p">
+                <label>名称：</label>
+                <input id="username" name="username" type="text" maxlength="200">
+            </p>
+            <p class="login_p">
+                <label>地址：</label>
+                <input id="addr" name="addr" type="text" maxlength="250">
+            </p>
+             <p class="login_p">
+                <label>缴费周期：</label>
+                <input id="feetime" name="feetime" type="text" maxlength="100">
+            </p>
+             <p class="login_p">
+                <label>分组类别：</label>
+                <input id="group" name="group" type="text" maxlength="100">
+            </p>
+           
+           
+            <p class="login_btn">
+            
+            <input type="submit" value="添加"  onclick="return subUser();"/>
+            </p>
+           
+        </div>
+        <div class="filter" style="display:none" id="filter"></div>
+		</form>
+		
+		
+<form name = "myform3" id="myform3" action = "@{Application.updatesubUserInfo()}" method="post">
+		
+        <div id="updatebox" class="modify_box">
+            <p class="login_close">
+                <a id="updateUserClose" onclick="addUserClose">关闭</a>
+            </p>
+          
+            <p class="login_p">
+                <label>户号：</label>
+                <input id="update_account" name="update_account" type="text" maxlength="100">
+            </p>
+            <p class="login_p">
+                <label>名称：</label>
+                <input id="update_username" name="update_username" type="text" maxlength="200">
+            </p>
+            <p class="login_p">
+                <label>地址：</label>
+                <input id="update_addr" name="update_addr" type="text" maxlength="250">
+            </p>
+             <p class="login_p">
+                <label>缴费周期：</label>
+                <input id="update_feetime" name="update_feetime" type="text" maxlength="100">
+            </p>
+             <p class="login_p">
+                <label>分组类别：</label>
+                <input id="update_group" name="update_group" type="text" maxlength="100">
+            </p>
+            <input id="update_id" name="update_id" type="hidden" maxlength="100">
+           
+            <p class="login_btn">
+            
+            <input type="submit" value="修改"  />
+            </p>
+           
+        </div>
+        <div class="filter" style="display:none" id="filter"></div>
+		</form>		
+
+<div id="body-core" class="hfeed site">
+
+    <header id="site-header">
+
+        
+        <div id="pre-header">
+        <div class="wrap-safari">
+        <div id="pre-header-core" class="main-navigation">
+  
+            
+            
+            
+        </div>
+        </div>
+        </div>
+        <!-- #pre-header -->
+
+    #{header user:user /}
+        <!-- #header -->
+            </header>
+    <!-- header -->
+    
+
+
+ <script type="text/javascript">
+ 
+ function subUser(){
+	 
+	 var account=  $('#account').val();
+	 
+	 if(account==""){
+			
+			//$('#userNum').poshytip('show'); 
+			
+			alert("请填写户号");
+			return false;
+			
+		}
+ }
+ var selectedTr = null;  
+ function c1(obj) {  
+     obj.style.backgroundColor = '#DDDDDD'; //把点到的那一行变希望的颜色;   
+     if (selectedTr != null)  
+         selectedTr.style.removeAttribute("backgroundColor");  
+     if (selectedTr == obj)  
+         selectedTr = null;//加上此句，以控制点击变白，再点击反灰   
+     else  
+         selectedTr = obj;  
+ }  
+
+ 
+ $('#updateUserClose').click(function() {
+     $('#updatebox').pophide({
+         filter : '#filter'
+     });
+ });
+ 
+ function getrow(o) {  
+	 
+     var tr = o.parentNode.parentNode;  
+     var tds = tr.cells;  
+     var str = "you click ";  
+     for(var i = 0;i < tds.length;i++){  
+         
+             str = str + tds[i].innerHTML + "--";  
+          
+     }  
+     
+     $("#update_account").attr("value",tds[1].innerHTML);
+     $("#update_username").attr("value",tds[2].innerHTML);
+     $("#update_addr").attr("value",tds[3].innerHTML);
+     $("#update_feetime").attr("value",tds[4].innerHTML);
+     $("#update_group").attr("value",tds[5].innerHTML);
+     $("#update_id").attr("value",tds[0].innerHTML);
+     
+     
+    
+         $('#updatebox').popup({
+             filter : '#filter'
+         });
+
+    
+ }  
+ 
+
+ $(function() {
+     $('#addUserInfo').click(function() {
+         $('#addbox').popup({
+             filter : '#filter'
+         });
+     });
+     
+     $('#addUserClose').click(function() {
+         $('#addbox').pophide({
+             filter : '#filter'
+         });
+     });
+     
+ });  
+ 
+
+ </script>          
+            
+            
+     <div id="content">
+     <div id="content-core">
+     <div id="intro" class="option1">
+     <div id="intro-core"><h1 class="page-title"><span>用户信息</span></h1>
+     <div id="breadcrumbs">
+     <div id="breadcrumbs-core">用户信息</div></div>
+     </div>
+     
+      <table border="0" >
+      	<tbody >
+      	<tr>
+      		<td width="10%">用户名：</td>
+      	<td width="30%">${user.username}</td>
+      			<td width="50%"> <li class="current_page_item"><a  id="loginBtn">修改密码</a></li></td>
+      	
+      	 </tr>
+      	</tbody>
+      
+      
+      </table>
+     
+     
+     </div>
+       </div>
+     </div>
+            
+    <div id="content">
+    
+    
+    
+    
+    
+      <div id="content-core">
+    
+    
+
+        <div id="main">
+        <div id="intro" class="option1"><div id="intro-core"><h1 class="page-title"><span>用电信息管理</span></h1><div id="breadcrumbs"><div id="breadcrumbs-core"><a href="/">主页</a><span class="delimiter"> / </span>个人工单</div></div></div></div>
+        <div id="main-core">
+            <table>
+            <input type="button" value="新增" id="addUserInfo" />
+           
+       <thead>
+           <tr>
+               
+               <th>客户编号</th>
+               <th>户号</th>
+               
+             
+               <th>名称</th>
+              
+               <th>地址</th>
+                <th>缴费周期</th>
+                 <th>分组类别</th>
+                 <th>操作</th>
+                 
+           </tr>
+       </thead>
+     
+       <tbody>  
+        #{list subs, as:'item'}
+                    <tr >  
+                        <td>${item.id}</td>  
+                        <td>${item.account}</td>  
+                        <td>${item.username}</td>  
+                   
+                        <td>${item.addr}</td>  
+                        <td>${item.feetime}</td>  
+                        <td>${item.grouptype}</td>  
+                         <td><a href="javascript:void(0)" onclick="getrow(this);">修改</a>/ <a href="/delsubUserInfo?id=${item.id}">删除</a></td>
+                    </tr>  
+       #{/list}
+                    
+                </tbody>  
+       </table>
+        
+        
+</div></div></div>
+            
+                
+
+    <div id="comments" class="comments-area">
+    
+    
+    
+    
+    
+    
+    <div id="content-core">
+    
+    
+
+        <div id="main">
+        <div id="intro" class="option1"><div id="intro-core"><h1 class="page-title"><span>个人工单</span></h1><div id="breadcrumbs"><div id="breadcrumbs-core"><a href="/">主页</a><span class="delimiter"> / </span>个人工单</div></div></div></div>
+        <div id="main-core">
+
+            
+                
+
+    <div id="comments" class="comments-area">
+    
+    
+  
+
+    <table>
+       <thead>
+           <tr>
+               
+               <th>客户编号</th>
+               <th>客户名称</th>
+               
+             
+               <th>业务类型</th>
+              
+               <th>办理时间</th>
+                <th>状态</th>
+                 <th>查看详单</th>
+           </tr>
+       </thead>
+       <tbody>
+           #{list ls, as:'yewu'}
+               <tr>
+                   
+                   <td>${yewu.orderNum}</td>
+                   <td>${yewu.customName}</td>
+                   
+                %{
+    				if(yewu.type==1){
+				}%
+					 <td>电费缴纳</td>
+				%{
+   					} else if (yewu.type==2){
+				}%
+ 					<td>工程服务</td>
+				%{
+  			 		}else if (yewu.type==3){
+				}%
+                    <td>业务办理</td>
+              
+                     %{
+  			 		}
+				}%	
+                  
+                   <!--  
+                   <td>${yewu.fee}</td>
+                   <td>${yewu.address}</td>
+                   -->
+                   <td>${yewu.date}</td>
+                     %{
+    				if(yewu.orderstate=="0"){
+				}%
+					 <td>未处理</td>
+				%{
+   					} else if (yewu.orderstate=="1"){
+				}%
+ 					<td>办理中</td>
+				%{
+  			 		}else if (yewu.orderstate=="2"){
+				}%
+                    <td>业务结束</td>
+              
+                 	
+                     %{
+  			 		}
+				}%	
+                  
+                   <td> <a href="@{show(yewu.id)}">查看</a></td>
+                  
+               </tr>
+           #{/list}
+       </tbody>
+   </table> 
+    
+                                 
+                       
+                            </div><!-- #respond -->
+            
+</div><!-- #comments .comments-area -->
+            
+
+        </div><!-- #main-core -->
+        </div><!-- #main -->
+            </div>
+    </div><!-- #content -->
+
+
+</div><!-- #body-core -->
+
+
+
+</body></html>

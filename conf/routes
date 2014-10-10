@@ -21,6 +21,8 @@ POST     /reg                        Application.reg
 GET     /personal                        		Application.yewubanli_list
 GET     /listinfo                        		Application.listinfo
 GET     /showinfo                        		Application.showinfo
+GET     /yongdianguanjia                        		Application.yongdianguanjia
+GET     /delsubUserInfo                        		Application.delsubUserInfo
 
 
 POST     /alipay                        PayAPI.alipay

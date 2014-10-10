@@ -1,6 +1,10 @@
 package models;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import play.data.validation.Email;
@@ -42,6 +46,10 @@ public class User extends Model {
     //用电客户名称
     @Required
   	public String realname;
+    
+    
+    @OneToMany(cascade=CascadeType.PERSIST, mappedBy="user" )
+    public List<RelatedUser> relatedUsers;
     
     public User(String username,String password,String tel) {
         this.password = password;

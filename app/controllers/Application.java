@@ -79,8 +79,13 @@ public class Application extends Controller {
         	renderArgs.put("user", user);
         }
     	if(type!=null){
-    		if(type.equals("1"))
-    			renderTemplate("Application/yewubanli.html",user);
+    		if(type.equals("1")){ 
+    			
+    			
+    			renderTemplate("Application/yonngdianmaster_list.html",user);
+    			
+    			}
+    			
     		else if(type.equals("3"))
     			renderTemplate("Application/showproject.html",user);
     			//renderTemplate("Application/yewubanli_project.html",user);
@@ -238,4 +243,71 @@ public class Application extends Controller {
 		renderTemplate("Application/"+page+".html",user);
 		
 	}
+	
+	
+	public static void addSubinfo(String account, String username,String addr,String feetime,String group){
+		User user = connected();
+		if(user==null){
+			index();
+			
+		}else{
+			RelatedUser sub = new RelatedUser();
+			
+			sub.account=account;
+			sub.username=username;
+			sub.addr=addr;
+			sub.feetime=feetime;
+			sub.grouptype=group;
+			sub.user=user;
+			sub.save();
+			StringBuffer sbHtml = new StringBuffer();
+			sbHtml.append("<script>alert('添加信息成功！'); window.location.href='/yongdianguanjia'; </script>");
+    		renderHtml(sbHtml);
+			
+		}
+		
+		
+	}
+	
+	
+	public static void yongdianguanjia(){
+		User user = connected();
+		List<RelatedUser> subs = RelatedUser.find("byUser", user).fetch();
+		
+		renderTemplate("Application/yonngdianmaster_list.html",user,subs);
+		
+	}
+	
+	public static void delsubUserInfo(Long id){
+		User user = connected();
+		RelatedUser.delete("id=?", id);
+		StringBuffer sbHtml = new StringBuffer();
+		sbHtml.append("<script>alert('删除信息成功！'); window.location.href='/yongdianguanjia'; </script>");
+		renderHtml(sbHtml);
+	}
+	
+	public static void updatesubUserInfo(Long update_id,String update_account, String update_username,String update_addr,String update_feetime,String update_group ){
+		User user = connected();
+		if(user==null){
+			index();
+			
+		}else{
+			RelatedUser sub = RelatedUser.findById(update_id);
+			
+			sub.account=update_account;
+			sub.username=update_username;
+			sub.addr=update_addr;
+			sub.feetime=update_feetime;
+			sub.grouptype=update_group;
+			sub.user=user;
+			sub.save();
+			StringBuffer sbHtml = new StringBuffer();
+			sbHtml.append("<script>alert('修改信息成功！'); window.location.href='/yongdianguanjia'; </script>");
+    		renderHtml(sbHtml);
+			
+		}
+		
+		
+	}
+	
 }
