@@ -33,10 +33,10 @@ public class YeWuBanLiAdmin extends Controller {
     		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
     		Date sDate = sf.parse(startdate);
     		Date eDate = sf.parse(enddate);
-    		orderList = YeWuBanLi.find("date >= ? and date <= ? and isdelete = '0' order by date desc",sDate, eDate).from(start).fetch(rows);
+    		orderList = YeWuBanLi.find("type = ? and date >= ? and date <= ? and isdelete = '0' order by date desc",6,sDate, eDate).from(start).fetch(rows);
     		count = orderList.size();
     	} else {
-    		orderList = YeWuBanLi.find("isdelete = '0' order by date desc").from(start).fetch(rows);
+    		orderList = YeWuBanLi.find("isdelete = '0' and type=6 order by date desc").from(start).fetch(rows);
     		count = YeWuBanLi.count();
     	}
         
@@ -81,9 +81,9 @@ public class YeWuBanLiAdmin extends Controller {
         return obj;
     }
 
-    public static void chageOrderStatus(List<String> id, String status) {
-    	for (String ordernum: id) {
-    		YeWuBanLi order = YeWuBanLi.find("byOrderNum", ordernum).first();
+    public static void chageOrderStatus(List<Long> id, String status) {
+    	for (Long orderid: id) {
+    		YeWuBanLi order = YeWuBanLi.find("id", orderid).first();
     		order.orderstate = status;
     		order.save();
     	}
@@ -97,8 +97,8 @@ public class YeWuBanLiAdmin extends Controller {
     	}
     }
     
-    public static void uploadImage(String data, File fileupload) {
-    	YeWuBanLi df = YeWuBanLi.find("byOrderNum", data).first();
+    public static void uploadImage(Long data, File fileupload) {
+    	YeWuBanLi df = YeWuBanLi.find("id", data).first();
     	if (df != null) {
     		String url = "/public/userimage/" + Utils.getImageFileId();
     		Files.copy(fileupload, Play.getFile(url));
@@ -113,12 +113,12 @@ public class YeWuBanLiAdmin extends Controller {
     		obj.addProperty("result", "success");
     		renderHtml("success");
     	} else {
-    		System.out.println("ERROR: Can't find OrderNum at " + data);
+    		System.out.println("ERROR: Can't find id at " + data);
     	}
     }
     
-    public static void deleteImage(String orderid, String id) {
-    	YeWuBanLi df = YeWuBanLi.find("byOrderNum", orderid).first();
+    public static void deleteImage(Long orderid, String id) {
+    	YeWuBanLi df = YeWuBanLi.find("id", orderid).first();
     	Image todel = null;
     	if (df != null && df.imagelist != null) {
     		for (Image image: df.imagelist) {
@@ -138,8 +138,8 @@ public class YeWuBanLiAdmin extends Controller {
     	}
     }
     
-    public static void getImageList(String id) {
-    	YeWuBanLi df = YeWuBanLi.find("byOrderNum", id).first();
+    public static void getImageList(Long id) {
+    	YeWuBanLi df = YeWuBanLi.find("id", id).first();
     	if (df != null) {
     		JsonObject list = new JsonObject();
     		list.addProperty("total", df.imagelist.size());
@@ -155,7 +155,7 @@ public class YeWuBanLiAdmin extends Controller {
     		list.add("rows", array);
     		renderText(list);
     	} else {
-    		System.out.println("ERROR: Can't find OrderNum at " + id);
+    		System.out.println("ERROR: Can't find id at " + id);
     	}
     }
 }
