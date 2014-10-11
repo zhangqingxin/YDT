@@ -96,7 +96,7 @@ public class PayAPI extends Controller{
 	}
 	
 	
-	public  static void bankPay(String bankcode){
+	public  static void bankPay(String bankcode,String fee,String trade_no){
 		
 		//支付类型
 				String payment_type = "1";
@@ -114,7 +114,7 @@ public class PayAPI extends Controller{
 				//必填
 
 				//商户订单号
-				String out_trade_no =getFixLenthString(8);
+				String out_trade_no =trade_no;
 				//商户网站订单系统中唯一订单号，必填
 
 				//订单名称
@@ -122,7 +122,7 @@ public class PayAPI extends Controller{
 				//必填
 
 				//付款金额
-				String total_fee = "0.02";
+				String total_fee = fee;
 				//必填
 
 				//订单描述
@@ -313,11 +313,19 @@ public class PayAPI extends Controller{
 		YeWuBanLi yewu = YeWuBanLi.find("trade_no= ?", out_trade_no).first();
 		yewu.orderstate="3";
 		Logger.logInfo("###################     this is from :   "+from );
-		if(yewu.save().isPersistent())
-			Logger.logInfo("###################     ok    time:"+s+",单号:"+out_trade_no+",user:"+session.get("user") );
 		
-		else
+		System.out.println("###################     this is from :   "+from);
+		if(yewu.save().isPersistent()){
+			System.out.println("###################     ok    time:"+s+",单号:"+out_trade_no+",user:"+session.get("user"));
+			Logger.logInfo("###################     ok    time:"+s+",单号:"+out_trade_no+",user:"+session.get("user") );
+		}
+			
+		
+		else{
+			System.out.println("###################    error  time:"+s+",单号:"+out_trade_no+",user:"+session.get("user")+"dataid:"+yewu.id );
 			Logger.logInfo("###################    error  time:"+s+",单号:"+out_trade_no+",user:"+session.get("user")+"dataid:"+yewu.id );
+		}
+			
 		return "OK";
 		
 		

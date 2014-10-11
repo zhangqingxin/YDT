@@ -107,7 +107,7 @@ public class Application extends Controller {
     public static void yewubanli_list(){
     	User user = connected();
     	
-    	List<YeWuBanLi> ls= YeWuBanLi.find("user=? order by date desc", user).fetch();
+    	List<YeWuBanLi> ls= YeWuBanLi.find("user=? and type <>1 order by date desc", user).fetch();
         if(user != null) {
         	renderArgs.put("user", user);
         }
@@ -273,8 +273,9 @@ public class Application extends Controller {
 	public static void yongdianguanjia(){
 		User user = connected();
 		List<RelatedUser> subs = RelatedUser.find("byUser", user).fetch();
+		List<YeWuBanLi> ls= YeWuBanLi.find("user=? and type=1 order by date desc", user).fetch();
 		
-		renderTemplate("Application/yonngdianmaster_list.html",user,subs);
+		renderTemplate("Application/yonngdianmaster_list.html",user,subs,ls);
 		
 	}
 	

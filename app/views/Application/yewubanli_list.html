@@ -79,35 +79,6 @@
 
 <body class="page page-id-14 page-template-default layout-responsive header-style1">
 
-<form name = "myform" id="myform" action = "@{Application.changepd()}" method="post">
-		
-        <div id="loginBox" class="modify_box">
-            <p class="login_close">
-                <a id="loginClose" onclick="closelogin">关闭</a>
-            </p>
-          
-            <p class="login_p">
-                <label>旧密码：</label>
-                <input id="oldpassword" name="oldpassword" type="password">
-            </p>
-            <p class="login_p">
-                <label>新密码：</label>
-                <input id="login_passwd" name="login_passwd" type="password">
-            </p>
-            <p class="login_p">
-                <label>新密码：</label>
-                <input id="login_passwd_re" name="login_passwd_re" type="password">
-            </p>
-           
-            <p class="login_btn">
-            
-            <input type="submit" value="确认修改" />
-            </p>
-           
-        </div>
-        <div class="filter" style="display:none" id="filter"></div>
-		</form>
-
 
 <div id="body-core" class="hfeed site">
 
@@ -141,26 +112,9 @@
  </script>          
             
             
-     <div id="content">
-     <div id="content-core">
-     <div id="intro" class="option1">
-     <div id="intro-core"><h1 class="page-title"><span>用户信息</span></h1>
-     <div id="breadcrumbs">
-     <div id="breadcrumbs-core">用户信息</div></div>
-     </div>
+    
      
-      <table border="0" >
-      	<tbody >
-      	<tr>
-      		<td width="10%">用户名：</td>
-      	<td width="30%">${user.username}</td>
-      			<td width="50%"> <li class="current_page_item"><a  id="loginBtn">修改密码</a></li></td>
-      	
-      	 </tr>
-      	</tbody>
-      
-      
-      </table>
+    
      
      
      </div>
