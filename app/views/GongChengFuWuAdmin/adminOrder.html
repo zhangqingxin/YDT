@@ -32,9 +32,11 @@
                     } else if (val == '1') {
                         return '正在处理';
                     } else if (val == '2') {
-                        return '处理完毕';
+                        return '等待交费';
                     } else if (val == '3') {
-                        return '交易完成'
+                        return '付款完成';
+                    } else if (val == '4') {
+                        return '交易完成';
                     }
                 }">订单状态</th>
                 <th data-options="field:'type',width:200,align:'center',formatter:function(val,rec){
@@ -109,7 +111,9 @@
                 <td><select id="orderstatus" name="orderstatus">
                         <option value="0">已下单</option>
                         <option value="1">正在处理</option>
-                        <option value="2">处理完毕</option>
+                        <option value="2">等待交费</option>
+                        <option value="3">付款完成</option>
+                        <option value="4">交易完成</option>
                 </select></td>
             </tr>
         </table>
