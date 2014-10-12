@@ -60,6 +60,8 @@ public class YeWuBanLi extends Model {
 	
 	public String projectType="";
 	
+	public String ispower="0";
+	
 	@OneToMany(cascade=CascadeType.ALL,fetch = FetchType.LAZY, orphanRemoval=true)
 	public List<Image> imagelist;
 	
