@@ -223,7 +223,8 @@ public class PayAPI extends Controller{
 				Logger.logInfo("###################  laishi " );
 				verifyOK(out_trade_no,"returnurl");
 				
-				renderHtml("验证成功<br />");
+				//renderHtml("验证成功<br />");
+				re_success();
 				
 			}
 			
@@ -235,7 +236,8 @@ public class PayAPI extends Controller{
 		}else{
 			//该页面可做页面美工编辑
 			
-			renderHtml("验证失败<br />");
+			//renderHtml("验证失败<br />");
+			re_fail();
 		}
 		
 		
@@ -357,5 +359,23 @@ public class PayAPI extends Controller{
 	    // 返回固定的长度的随机数  
 	    return fixLenthString.substring(1, strLength + 1);  
 	}  
+	
+	
+	
+	public static void re_success(){
+		
+		StringBuffer sbHtml = new StringBuffer();
+		sbHtml.append("<script>alert('费用交纳成功！'); window.location.href='/yongdianguanjia'; </script>");
+		renderHtml(sbHtml);
+		
+	}
+	
+	public static void re_fail(){
+		
+		StringBuffer sbHtml = new StringBuffer();
+		sbHtml.append("<script>alert('费用交纳失败！ 请重试！'); window.location.href='/yongdianguanjia'; </script>");
+		renderHtml(sbHtml);
+		
+	}	
 
 }

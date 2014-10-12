@@ -3,21 +3,17 @@
 <html lang="zh-CN" class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<title>工程服务 | 用电通</title>
+<title>工单详情 | 用电通</title>
 <!--[if lt IE 9]>
 <script src="http://localhost/wp-content/themes/minamaze/lib/scripts/html5.js" type="text/javascript"></script>
 <![endif]-->
 
 
-<link rel="stylesheet" id="contact-form-7-css" href="@{'/public/stylesheets/styles.css'}" type="text/css" media="all">
-<link rel="stylesheet" id="font-awesome-min-css" href="@{'/public/stylesheets/font-awesome_002.css'}" type="text/css" media="all">
-<link rel="stylesheet" id="font-awesome-cdn-css" href="@{'/public/stylesheets/font-awesome.css'}" type="text/css" media="all">
-<link rel="stylesheet" id="dashicons-css-css" href="@{'/public/stylesheets/dashicons.css'}" type="text/css" media="all">
-<link rel="stylesheet" id="bootstrap-css" href="@{'/public/stylesheets/bootstrap.css'}" type="text/css" media="all">
-<link rel="stylesheet" id="prettyPhoto-css" href="@{'/public/stylesheets/prettyPhoto.css'}" type="text/css" media="all">
+
 <link rel="stylesheet" id="style-css" href="@{'/public/stylesheets/style.css'}" type="text/css" media="all">
-<link rel="stylesheet" id="shortcodes-css" href="@{'/public/stylesheets/style-shortcodes.css'}" type="text/css" media="all">
-<link rel="stylesheet" id="responsive-css" href="@{'/public/stylesheets/style-responsive.css'}" type="text/css" media="all">
+
+
+
 
 
 
@@ -72,7 +68,6 @@
  <script type="text/javascript">
 
  
- 
 
  </script>          
             
@@ -82,7 +77,7 @@
     <div id="content-core">
 
         <div id="main">
-        <div id="intro" class="option1"><div id="intro-core"><h1 class="page-title"><span>工程服务</span></h1><div id="breadcrumbs"><div id="breadcrumbs-core"><a href="/">主页</a><span class="delimiter"> / </span>工程服务</div></div></div></div>
+        <div id="intro" class="option1"><div id="intro-core"><h1 class="page-title"><span>工单详情</span></h1><div id="breadcrumbs"><div id="breadcrumbs-core"><a href="/index">Home</a><span class="delimiter"> / </span><a href="/personal">返回</a></div></div></div></div>
         <div id="main-core">
 
             
@@ -96,38 +91,24 @@
     
     
                                  
-                                    <form action="@{Application.yewubanli_submit()}" method="post" id="commentform" name="commentform" class="comment-form" enctype="multipart/form-data">
-                                      <p class="comment-notes"> 必填项已用<span class="required">*</span>标注 &nbsp;&nbsp;&nbsp;<font color='red'>说明：“用电通”的工程服务为您提供家庭、商铺、公司等各类客户用电线路、电表等安装、检修、维护等业务内容。</font> </p>            
-                                      <p class="comment-form-author "><label for="author">用电客户编号 <span class="required">*</span>&nbsp;&nbsp;&nbsp;<font color='red'>说明：客户在供电公司登记的10位客户编号（或称电号、户号），非供电公司用户此项可以不填。</font> </label> 
-                                <input id="userNum" name="userNum" type="text" value="" size="30" aria-required="true" width="60%" maxlength="100"></p>
-                                
+                                    <form action="@{Application.yewubanli_submit()}" method="post" id="commentform" name="commentform" class="comment-form">
+                                      <p class="comment-notes"> 必填项已用<span class="required">*</span>标注</p>            
                                       
-								<p class="comment-form-email "><label for="email">用电客户名称 <span class="required">*</span>&nbsp;&nbsp;&nbsp;<font color='red'>说明：在供电公司登记的客户姓名</font> </label> 
-								<input id="customName" name="customName" type="text" value="" size="30" aria-required="true" maxlength="50"></p>
+                                      
+								<p class="comment-form-email "><label for="email">用电客户名称 <span class="required">*</span></label> 
+								<input id="customName" name="customName" type="text" value="${yewu.customName}" size="30" aria-required="true" disabled="disabled" ></p>
 								
-								<p class="comment-form-url  last"><label for="url">用电地址<span class="required">*</span>&nbsp;&nbsp;&nbsp;<font color='red'>说明：请详细填写您的地址，具体到房号</font> </label>
-								<input id="addr" name="addr" type="text" value="" size="30" maxlength="200"></p>
-                                <p class="comment-form-url  last"><label for="url">联系电话 <span class="required">*</span>&nbsp;&nbsp;&nbsp;<font color='red'>说明：为保证我们的服务质量，请您保持电话畅通。</font> </label>
-								<input id="tel" name="tel" type="text" value="" size="30" maxlength="50"></p>
+								<p class="comment-form-url  last"><label for="url">用电地址</label>
+								<input id="addr" name="addr" type="text" value="${yewu.address}" size="30" disabled="disabled"></p>
+                                
+								<p class="comment-form-url  last"><label for="url">咨询内容</label>
+								<input id="question" name="question" type="text" value="${yewu.question}" size="30" disabled="disabled"></p>
 								
-								
-								<p class="comment-form-url  last"><label for="url">工程服务类别</label>
-								<select id="projectType" name="projectType">
-								<option value="0"  >家庭内部线路安装检修维护</option>
-								<option value="1" >家庭户外线路安装检修维护</option>
-								<option value="2" >非居民用户用电线路安装检修维护</option>
-								<option value="3" >电表新装增容业务施工</option>
-								<option value="4" >变压器新装增容业务施工</option>
-								<option value="5" >其他</option>
+								<p class="comment-form-url  last"><label for="url">办理时间</label>
+								<input id="tel" name="tel" type="text" value="${yewu.date}" size="30" ></p>
 								</select>
 								</p>
-								
-                                                                       <input name="submit" type="submit" id="submit" onclick="return mycheckout();" value="提交">
-                            <input type="hidden" name="comment_post_ID" value="14" id="comment_post_ID">
-<input type="hidden" name="comment_parent" id="comment_parent" value="0">
-                        </p>
-                        <p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="65f916aa7b"></p><p style="display: none;"></p>             
-                               <input type="hidden" name="yewutype" value="2" id="yewutype"></form>
+                        </form>
                             </div><!-- #respond -->
             
 </div><!-- #comments .comments-area -->
@@ -148,56 +129,7 @@
 var _wpcf7 = {"loaderUrl":"http:\/\/localhost\/wp-content\/plugins\/contact-form-7\/images\/ajax-loader.gif","sending":"\u53d1\u9001\u4e2d\u3002\u3002\u3002"};
 /* ]]> */
 
- function mycheckout(){
-	
-	 var userNum=  $('#userNum').val();
-	 
-	 var customName=  $('#customName').val();
-	 
-	 var addr= $('#addr').val();
-	 
-	 var tel= $('#tel').val();
-	 
-	
 
-		if(userNum==""){
-			
-			//$('#userNum').poshytip('show'); 
-			
-			alert("请填写客户工单");
-			return false;
-			
-		}
- 		if(userNum.length!=10){
- 			alert("客户工单应为10位");
-			return false;
-			
-	 		
-	 	}
-		
-		if(customName==""){
-			
-			alert("请填写客户姓名");
-			return false;
-			
-		}
-		
-		if(addr==""){
-			
-			alert("请填写详细地址");
-			return false;
-			
-		}
-		
-		if(tel==""){
-	
-			alert("电话号码不能为空");
-			return false;
-	
-		}
-		
- }
- 
  
 
 </script>

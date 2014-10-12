@@ -128,7 +128,15 @@ public class Application extends Controller {
     		 url= im.url;
     	}
     	
-    	render(yewu,user,url);
+    	if(yewu.type==1){
+    		render(yewu,user,url);
+    	}else if(yewu.type==2){
+    		renderTemplate("Application/show2.html",yewu,user);
+    	}else if(yewu.type==6){
+    		renderTemplate("Application/show6.html",yewu,user);
+    	}
+    	
+    	
     	
     }
     
@@ -273,7 +281,7 @@ public class Application extends Controller {
 	public static void yongdianguanjia(){
 		User user = connected();
 		List<RelatedUser> subs = RelatedUser.find("byUser", user).fetch();
-		List<YeWuBanLi> ls= YeWuBanLi.find("user=? and type=1 order by date desc", user).fetch();
+		List<YeWuBanLi> ls= YeWuBanLi.find("user=?  order by date desc", user).fetch();
 		
 		renderTemplate("Application/yonngdianmaster_list.html",user,subs,ls);
 		
