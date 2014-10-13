@@ -65,7 +65,7 @@ public class GongChengFuWuAdmin extends Controller {
         obj.addProperty("orderid", order.id);
         obj.addProperty("registerid", order.orderNum);
         if (order.date != null) {
-        	DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");  
+        	DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
         	obj.addProperty("date", df.format(order.date));
         }
         obj.addProperty("orderprice", order.fee);
