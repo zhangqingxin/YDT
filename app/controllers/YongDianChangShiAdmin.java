@@ -13,6 +13,14 @@ public class YongDianChangShiAdmin extends Controller {
         render();
 	}
 
+	public static void jumin_all() {
+		User user = connected();
+        if(user != null) {
+        	renderArgs.put("user", user);
+        }
+        render();
+	}
+
 	public static void jumin_jibenqingkuang() {
 		User user = connected();
         if(user != null) {
@@ -61,6 +69,14 @@ public class YongDianChangShiAdmin extends Controller {
         render();
 	}
 	
+	public static void geti_all() {
+		User user = connected();
+        if(user != null) {
+        	renderArgs.put("user", user);
+        }
+        render();
+	}
+	
 	public static void geti_jibenqingkuang() {
 		User user = connected();
         if(user != null) {
@@ -102,6 +118,14 @@ public class YongDianChangShiAdmin extends Controller {
 	}
 	
 	public static void geti_weixiuweihu() {
+		User user = connected();
+        if(user != null) {
+        	renderArgs.put("user", user);
+        }
+        render();
+	}
+	
+	public static void bangong_all() {
 		User user = connected();
         if(user != null) {
         	renderArgs.put("user", user);
