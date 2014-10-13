@@ -37,7 +37,8 @@
                         return '交易完成';
                     }
                 }">订单状态</th>
-                <th data-options="field:'other',width:400,align:'left'">咨询内容</th>
+                <th data-options="field:'question',width:400,align:'left'">咨询内容</th>
+                <th data-options="field:'other',width:200,align:'center'">备注</th>
             </tr>
         </thead>
     </table>
@@ -66,11 +67,12 @@
                     }
                     
                     var status = $('#orderstatus').val();
+                    var des = $('#orderdes').val();
                     
                     $.ajax({  
                         url:'/admin/yewubanli/chageOrderStatus',
                         type:'POST',  
-                        data:ids + '&status=' + status,
+                        data:ids + '&status=' + status + '&des=' + des,
                         success:function(data){  
                             $('#statusdialog').dialog('close');
                             $('#orderdatas').datagrid('reload');
@@ -99,6 +101,10 @@
                         <option value="3">付款完成</option>
                         <option value="4">交易完成</option>
                 </select></td>
+            </tr>
+            <tr>
+                <td>订单备注：</td>
+                <td><input id="orderdes" style="width: 300px"></td>
             </tr>
         </table>
         <form id="uploadform" action="/admin/yewubanli/uploadImage" method="post" enctype="multipart/form-data">
@@ -213,6 +219,7 @@
             }
             var rows = $('#orderdatas').datagrid('getSelections');
             var id = rows[0].orderid;
+            $('#orderdes').val(rows[0].other);
             reloadFiles(id);
             
         });

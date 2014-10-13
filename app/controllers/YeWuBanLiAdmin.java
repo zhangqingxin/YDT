@@ -75,15 +75,17 @@ public class YeWuBanLiAdmin extends Controller {
         }
         obj.addProperty("tel", tel);
         obj.addProperty("name", order.customName);
-        obj.addProperty("other", order.question);
+        obj.addProperty("other", order.des);
+        obj.addProperty("question", order.question);
         
         return obj;
     }
 
-    public static void chageOrderStatus(List<Long> id, String status) {
+    public static void chageOrderStatus(List<Long> id, String status, String des) {
     	for (Long orderid: id) {
     		YeWuBanLi order = YeWuBanLi.find("byId", orderid).first();
     		order.orderstate = status;
+    		order.des = des;
     		order.save();
     	}
     }

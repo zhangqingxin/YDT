@@ -63,11 +63,12 @@
 		            }
 		            
 		            var status = $('#orderstatus').val();
+		            var des = $('#orderdes').val();
 		            
 		            $.ajax({  
                         url:'/admin/dianfei/chageOrderStatus',
                         type:'POST',  
-                        data:ids + '&status=' + status,
+                        data:ids + '&status=' + status + '&des=' + des,
                         success:function(data){  
                             $('#statusdialog').dialog('close');
                             $('#orderdatas').datagrid('reload');
@@ -97,6 +98,10 @@
 						<option value="4">交易完成</option>
 				</select></td>
 			</tr>
+            <tr>
+                <td>订单备注：</td>
+                <td><input id="orderdes" style="width: 300px"></td>
+            </tr>
 		</table>
 		<form id="uploadform" action="/admin/dianfei/uploadImage" method="post" enctype="multipart/form-data">
 		  <table>
@@ -210,6 +215,7 @@
 			}
 			var rows = $('#orderdatas').datagrid('getSelections');
             var id = rows[0].orderid;
+            $('#orderdes').val(rows[0].other);
             reloadFiles(id);
 			
         });

@@ -83,10 +83,11 @@ public class GongChengFuWuAdmin extends Controller {
         return obj;
     }
     
-    public static void chageOrderStatus(List<Long> id, String status) {
+    public static void chageOrderStatus(List<Long> id, String status, String des) {
     	for (Long orderid: id) {
     		YeWuBanLi order = YeWuBanLi.find("byId", orderid).first();
     		order.orderstate = status;
+    		order.des = des;
     		order.save();
     	}
     }
