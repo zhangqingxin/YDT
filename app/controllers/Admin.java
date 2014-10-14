@@ -2,6 +2,8 @@ package controllers;
 
 import java.util.List;
 
+import javax.swing.plaf.metal.MetalBorders.Flush3DBorder;
+
 import models.AdminUser;
 import models.FuncTreeNode;
 import play.mvc.Before;
@@ -13,6 +15,7 @@ import com.google.gson.JsonObject;
 
 import controllers.Secure.Security;
 
+@Check("admin")
 @With(Secure.class)
 public class Admin extends Controller {
 
@@ -53,7 +56,6 @@ public class Admin extends Controller {
 
 	public static void logout() {
 		session.clear();
-		admin();
 	}
 
 	public static void admin() {
