@@ -78,7 +78,7 @@ public class DianFeiAdmin extends Controller {
         	tel = order.phone;
         }
         obj.addProperty("tel", tel);
-        obj.addProperty("name", order.user.realname);
+        obj.addProperty("name", order.customName);
         obj.addProperty("other", order.des);
         
         return obj;
