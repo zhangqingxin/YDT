@@ -16,8 +16,11 @@ import com.google.gson.JsonObject;
 import play.Play;
 import play.libs.Files;
 import play.mvc.Controller;
+import play.mvc.With;
 import utils.Utils;
 
+@Check("admin")
+@With(Secure.class)
 public class GongChengFuWuAdmin extends Controller {
 
     public static void adminOrder() {

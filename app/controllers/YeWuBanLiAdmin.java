@@ -12,11 +12,14 @@ import models.YeWuBanLi;
 import play.Play;
 import play.libs.Files;
 import play.mvc.Controller;
+import play.mvc.With;
 import utils.Utils;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
+@Check("admin")
+@With(Secure.class)
 public class YeWuBanLiAdmin extends Controller {
     public static void adminOrder() {
         render();

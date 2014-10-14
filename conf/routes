@@ -36,6 +36,7 @@ GET     /showresult                        PayAPI.showresult
 GET      /admin                                 Admin.admin
 GET      /admin/index                           Admin.admin
 GET      /admin/treenode                        Admin.getFuncTreeNode
+GET      /admin/logout                          Admin.logout
 
 # Dianfei
 GET      /admin/dianfei/orderadmin              DianFeiAdmin.adminOrder
